@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace quanlytaxi
 {
-    public partial class frmDMQuanLyTaiXe : Form
+    public partial class frmDMQuanLyTaiXe : System.Windows.Forms.Form
     {
         public frmDMQuanLyTaiXe()
         {

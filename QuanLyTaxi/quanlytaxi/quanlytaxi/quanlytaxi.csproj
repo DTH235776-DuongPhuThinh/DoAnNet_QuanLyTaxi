@@ -46,17 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DangNhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DangNhap.Designer.cs">
+      <DependentUpon>DangNhap.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDMQuanLyTaiXe.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmDMQuanLyTaiXe.Designer.cs">
       <DependentUpon>frmDMQuanLyTaiXe.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmDMQuanLyTaxi.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmDMQuanLyTaxi.Designer.cs">
-      <DependentUpon>frmDMQuanLyTaxi.cs</DependentUpon>
     </Compile>
     <Compile Include="frmDMQuanLyXe.cs">
       <SubType>Form</SubType>
@@ -72,11 +72,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="DangNhap.resx">
+      <DependentUpon>DangNhap.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmDMQuanLyTaiXe.resx">
       <DependentUpon>frmDMQuanLyTaiXe.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmDMQuanLyTaxi.resx">
-      <DependentUpon>frmDMQuanLyTaxi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDMQuanLyXe.resx">
       <DependentUpon>frmDMQuanLyXe.cs</DependentUpon>

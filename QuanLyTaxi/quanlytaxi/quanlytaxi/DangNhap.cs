@@ -10,12 +10,11 @@ using System.Windows.Forms;
 
 namespace quanlytaxi
 {
-    public partial class frmDMQuanLyTaxi : Form
+    public partial class DangNhap : System.Windows.Forms.Form
     {
-        public frmDMQuanLyTaxi()
+        public DangNhap()
         {
             InitializeComponent();
         }
-
     }
 }

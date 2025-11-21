@@ -1,0 +1,9 @@
+D:\DoAnNet\QuanLyTaxi\quanlytaxi\quanlytaxi\obj\Debug\quanlytaxi.csproj.AssemblyReference.cache
+D:\DoAnNet\QuanLyTaxi\quanlytaxi\quanlytaxi\obj\Debug\quanlytaxi.DangNhap.resources
+D:\DoAnNet\QuanLyTaxi\quanlytaxi\quanlytaxi\obj\Debug\quanlytaxi.frmDMQuanLyTaiXe.resources
+D:\DoAnNet\QuanLyTaxi\quanlytaxi\quanlytaxi\obj\Debug\quanlytaxi.frmDMQuanLyXe.resources
+D:\DoAnNet\QuanLyTaxi\quanlytaxi\quanlytaxi\obj\Debug\quanlytaxi.frmMain.resources
+D:\DoAnNet\QuanLyTaxi\quanlytaxi\quanlytaxi\obj\Debug\quanlytaxi.Properties.Resources.resources
+D:\DoAnNet\QuanLyTaxi\quanlytaxi\quanlytaxi\obj\Debug\quanlytaxi.csproj.GenerateResource.cache
+D:\DoAnNet\QuanLyTaxi\quanlytaxi\quanlytaxi\obj\Debug\quanlytaxi.csproj.CoreCompileInputs.cache
+D:\DoAnNet\QuanLyTaxi\quanlytaxi\quanlytaxi\obj\Debug\quanlytaxi.Form.resources

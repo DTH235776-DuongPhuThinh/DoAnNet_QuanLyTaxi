@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace quanlytaxi
 {
-    public partial class frmMain : Form
+    public partial class Form : System.Windows.Forms.Form
     {
-        public frmMain()
+        public Form()
         {
             InitializeComponent();
         }
