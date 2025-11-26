@@ -101,7 +101,7 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.label1.Location = new System.Drawing.Point(456, 21);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(234, 38);
+            this.label1.Size = new System.Drawing.Size(273, 45);
             this.label1.TabIndex = 4;
             this.label1.Text = "Quản lý loại xe";
             // 
@@ -110,7 +110,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(15, 122);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 22);
+            this.label3.Size = new System.Drawing.Size(73, 27);
             this.label3.TabIndex = 4;
             this.label3.Text = "Mã xe";
             // 
@@ -119,7 +119,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(408, 76);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(308, 22);
+            this.label2.Size = new System.Drawing.Size(379, 27);
             this.label2.TabIndex = 4;
             this.label2.Text = "Xem và quản lý loại xe trong hệ thống";
             // 
@@ -128,31 +128,31 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(15, 172);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(63, 22);
+            this.label4.Size = new System.Drawing.Size(113, 27);
             this.label4.TabIndex = 4;
-            this.label4.Text = "Tên xe";
+            this.label4.Text = "Biển số xe";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(16, 221);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(64, 22);
+            this.label5.Size = new System.Drawing.Size(77, 27);
             this.label5.TabIndex = 4;
             this.label5.Text = "Số chỗ";
             // 
             // txtMaXe
             // 
-            this.txtMaXe.Location = new System.Drawing.Point(94, 119);
+            this.txtMaXe.Location = new System.Drawing.Point(134, 124);
             this.txtMaXe.Name = "txtMaXe";
-            this.txtMaXe.Size = new System.Drawing.Size(148, 30);
+            this.txtMaXe.Size = new System.Drawing.Size(148, 35);
             this.txtMaXe.TabIndex = 5;
             // 
             // txtTenXe
             // 
-            this.txtTenXe.Location = new System.Drawing.Point(94, 169);
+            this.txtTenXe.Location = new System.Drawing.Point(134, 169);
             this.txtTenXe.Name = "txtTenXe";
-            this.txtTenXe.Size = new System.Drawing.Size(148, 30);
+            this.txtTenXe.Size = new System.Drawing.Size(148, 35);
             this.txtTenXe.TabIndex = 5;
             // 
             // label7
@@ -160,7 +160,7 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(289, 125);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(86, 22);
+            this.label7.Size = new System.Drawing.Size(103, 27);
             this.label7.TabIndex = 4;
             this.label7.Text = "Giá / KM";
             // 
@@ -169,7 +169,7 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(289, 171);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(56, 22);
+            this.label8.Size = new System.Drawing.Size(69, 27);
             this.label8.TabIndex = 4;
             this.label8.Text = "Mô tả";
             // 
@@ -177,14 +177,14 @@
             // 
             this.txtGiaKM.Location = new System.Drawing.Point(412, 122);
             this.txtGiaKM.Name = "txtGiaKM";
-            this.txtGiaKM.Size = new System.Drawing.Size(121, 30);
+            this.txtGiaKM.Size = new System.Drawing.Size(121, 35);
             this.txtGiaKM.TabIndex = 5;
             // 
             // txtMoTa
             // 
             this.txtMoTa.Location = new System.Drawing.Point(412, 168);
             this.txtMoTa.Name = "txtMoTa";
-            this.txtMoTa.Size = new System.Drawing.Size(377, 30);
+            this.txtMoTa.Size = new System.Drawing.Size(377, 35);
             this.txtMoTa.TabIndex = 5;
             // 
             // label9
@@ -192,7 +192,7 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(544, 124);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(89, 22);
+            this.label9.Size = new System.Drawing.Size(109, 27);
             this.label9.TabIndex = 4;
             this.label9.Text = "Trạng thái";
             // 
@@ -201,15 +201,15 @@
             this.cboTrangThai.FormattingEnabled = true;
             this.cboTrangThai.Location = new System.Drawing.Point(668, 122);
             this.cboTrangThai.Name = "cboTrangThai";
-            this.cboTrangThai.Size = new System.Drawing.Size(121, 30);
+            this.cboTrangThai.Size = new System.Drawing.Size(121, 35);
             this.cboTrangThai.TabIndex = 6;
             // 
             // cboSoCho
             // 
             this.cboSoCho.FormattingEnabled = true;
-            this.cboSoCho.Location = new System.Drawing.Point(94, 218);
+            this.cboSoCho.Location = new System.Drawing.Point(134, 213);
             this.cboSoCho.Name = "cboSoCho";
-            this.cboSoCho.Size = new System.Drawing.Size(148, 30);
+            this.cboSoCho.Size = new System.Drawing.Size(148, 35);
             this.cboSoCho.TabIndex = 7;
             // 
             // btnLuu
@@ -244,7 +244,7 @@
             // 
             // frmDMQuanLyXe
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1215, 548);
             this.Controls.Add(this.cboSoCho);
