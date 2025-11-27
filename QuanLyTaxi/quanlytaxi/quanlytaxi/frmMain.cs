@@ -37,6 +37,8 @@ namespace quanlytaxi
             frmXe.Dock = DockStyle.Fill;
             tabQuanLyXe.Controls.Add(frmXe);
             frmXe.Show();
+
+            
         }
 
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
@@ -81,6 +83,11 @@ namespace quanlytaxi
         private void toolDMQuanLyXe_Click(object sender, EventArgs e)
         {
             OpenTab("Quản lý xe", new frmDMQuanLyXe());
+        }
+
+        private void toolDMThongKe_Click(object sender, EventArgs e)
+        {
+            OpenTab("Thống kê", new frmThongKe());
         }
     }
 }
