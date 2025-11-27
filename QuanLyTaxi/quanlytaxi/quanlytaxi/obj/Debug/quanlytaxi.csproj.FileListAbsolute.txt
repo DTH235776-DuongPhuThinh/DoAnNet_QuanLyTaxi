@@ -10,7 +10,6 @@ E:\project\DoAnNet_QuanLyTaxi\QuanLyTaxi\quanlytaxi\quanlytaxi\obj\Debug\quanlyt
 E:\project\DoAnNet_QuanLyTaxi\QuanLyTaxi\quanlytaxi\quanlytaxi\obj\Debug\quanlytaxi.DangNhap.resources
 E:\project\DoAnNet_QuanLyTaxi\QuanLyTaxi\quanlytaxi\quanlytaxi\obj\Debug\quanlytaxi.frmDMQuanLyTaiXe.resources
 E:\project\DoAnNet_QuanLyTaxi\QuanLyTaxi\quanlytaxi\quanlytaxi\obj\Debug\quanlytaxi.frmDMQuanLyXe.resources
-E:\project\DoAnNet_QuanLyTaxi\QuanLyTaxi\quanlytaxi\quanlytaxi\obj\Debug\quanlytaxi.Form.resources
 E:\project\DoAnNet_QuanLyTaxi\QuanLyTaxi\quanlytaxi\quanlytaxi\obj\Debug\quanlytaxi.Properties.Resources.resources
 E:\project\DoAnNet_QuanLyTaxi\QuanLyTaxi\quanlytaxi\quanlytaxi\obj\Debug\quanlytaxi.csproj.GenerateResource.cache
 E:\project\DoAnNet_QuanLyTaxi\QuanLyTaxi\quanlytaxi\quanlytaxi\obj\Debug\quanlytaxi.csproj.CoreCompileInputs.cache
@@ -88,3 +87,4 @@ D:\DoAnNET\QuanLyTaxi\quanlytaxi\quanlytaxi\bin\Debug\System.Numerics.Vectors.xm
 D:\DoAnNET\QuanLyTaxi\quanlytaxi\quanlytaxi\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 D:\DoAnNET\QuanLyTaxi\quanlytaxi\quanlytaxi\bin\Debug\System.Threading.Tasks.Extensions.xml
 D:\DoAnNET\QuanLyTaxi\quanlytaxi\quanlytaxi\obj\Debug\quanlytaxi.csproj.Up2Date
+E:\project\DoAnNet_QuanLyTaxi\QuanLyTaxi\quanlytaxi\quanlytaxi\obj\Debug\quanlytaxi.frmMain.resources

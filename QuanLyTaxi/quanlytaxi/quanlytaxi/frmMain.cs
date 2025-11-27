@@ -8,69 +8,79 @@ namespace quanlytaxi
         private bool _isAdmin;
         private string _username;
 
-        // Constructor mặc định (cần thiết cho Designer)
         public frmMain()
         {
             InitializeComponent();
         }
 
-        // Constructor nhận thông tin đăng nhập
         public frmMain(bool isAdmin, string username)
         {
             InitializeComponent();
-            this._isAdmin = isAdmin;
-            this._username = username;
-            this.Text = "CHƯƠNG TRÌNH - " + (_isAdmin ? "Quản trị viên" : "Nhân viên") + " (" + username + ")";
+            _isAdmin = isAdmin;
+            _username = username;
+            this.Text = "CHƯƠNG TRÌNH QUẢN LÝ TAXI - " + (_isAdmin ? "Quản trị viên" : "Nhân viên") + " (" + username + ")";
         }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            // Thiết lập Form chính là MDI Container để chứa các Form con
-            this.IsMdiContainer = true;
+            this.IsMdiContainer = false;   // KHÔNG dùng MDI nữa
+            frmDMQuanLyTaiXe frmTaiXe = new frmDMQuanLyTaiXe();
+            frmTaiXe.TopLevel = false;
+            frmTaiXe.FormBorderStyle = FormBorderStyle.None;
+            frmTaiXe.Dock = DockStyle.Fill;
+            tabQuanLyTaiXe.Controls.Add(frmTaiXe);
+            frmTaiXe.Show();
+
+            frmDMQuanLyXe frmXe = new frmDMQuanLyXe();
+            frmXe.TopLevel = false;
+            frmXe.FormBorderStyle = FormBorderStyle.None;
+            frmXe.Dock = DockStyle.Fill;
+            tabQuanLyXe.Controls.Add(frmXe);
+            frmXe.Show();
         }
 
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
-            // Đảm bảo ứng dụng thoát hoàn toàn khi form chính đóng
             Application.Exit();
         }
 
-        // --- Xử lý sự kiện Click cho Menu Quản lý Tài Xế ---
+        // ===== HÀM CHUNG MỞ TAB ====
+        private void OpenTab(string title, Form form)
+        {
+            // Kiểm tra tab đã tồn tại chưa
+            foreach (TabPage page in tabMain.TabPages)
+            {
+                if (page.Text == title)
+                {
+                    tabMain.SelectedTab = page;
+                    return;
+                }
+            }
+
+            // Tạo tab mới
+            TabPage newTab = new TabPage(title);
+            tabMain.TabPages.Add(newTab);
+            tabMain.SelectedTab = newTab;
+
+            // Nhúng form vào tab
+            form.TopLevel = false;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.Dock = DockStyle.Fill;
+
+            newTab.Controls.Add(form);
+            form.Show();
+        }
+
+        // ===== MENU QUẢN LÝ TÀI XẾ =====
         private void toolDMQuanLyTaiXe_Click(object sender, EventArgs e)
         {
-            // 1. Kiểm tra form đã mở chưa
-            foreach (Form childForm in this.MdiChildren)
-            {
-                if (childForm.GetType() == typeof(frmDMQuanLyTaiXe))
-                {
-                    childForm.BringToFront();
-                    return;
-                }
-            }
-
-            // 2. Mở form mới nếu chưa mở
-            frmDMQuanLyTaiXe frmTaiXe = new frmDMQuanLyTaiXe();
-            frmTaiXe.MdiParent = this;
-            frmTaiXe.Show();
+            OpenTab("Quản lý tài xế", new frmDMQuanLyTaiXe());
         }
-        // --- Xử lý sự kiện Click cho Menu Quản lý Xe ---
+
+        // ===== MENU QUẢN LÝ XE =====
         private void toolDMQuanLyXe_Click(object sender, EventArgs e)
         {
-
-            // 1. Kiểm tra form đã mở chưa
-            foreach (Form childForm in this.MdiChildren)
-            {
-                if (childForm.GetType() == typeof(frmDMQuanLyXe))
-                {
-                    childForm.BringToFront();
-                    return;
-                }
-            }
-
-            // 2. Mở form mới nếu chưa mở
-            frmDMQuanLyXe frmXe = new frmDMQuanLyXe();
-            frmXe.MdiParent = this;
-            frmXe.Show();
+            OpenTab("Quản lý xe", new frmDMQuanLyXe());
         }
     }
 }
