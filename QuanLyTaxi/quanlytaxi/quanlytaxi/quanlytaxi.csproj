@@ -101,6 +101,12 @@
     <Compile Include="DangNhap.Designer.cs">
       <DependentUpon>DangNhap.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmDatXe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDatXe.Designer.cs">
+      <DependentUpon>frmDatXe.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDMQuanLyTaiXe.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +135,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="DangNhap.resx">
       <DependentUpon>DangNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDatXe.resx">
+      <DependentUpon>frmDatXe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDMQuanLyTaiXe.resx">
       <DependentUpon>frmDMQuanLyTaiXe.cs</DependentUpon>

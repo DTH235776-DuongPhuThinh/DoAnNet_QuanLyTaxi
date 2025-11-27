@@ -62,7 +62,7 @@
             // dgvThongKe
             // 
             this.dgvThongKe.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvThongKe.Location = new System.Drawing.Point(12, 233);
+            this.dgvThongKe.Location = new System.Drawing.Point(12, 214);
             this.dgvThongKe.Name = "dgvThongKe";
             this.dgvThongKe.RowHeadersWidth = 62;
             this.dgvThongKe.RowTemplate.Height = 28;
