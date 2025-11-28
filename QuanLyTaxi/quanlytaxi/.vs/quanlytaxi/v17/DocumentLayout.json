@@ -3,32 +3,16 @@
   "WorkspaceRootPath": "E:\\project\\DoAnNet_QuanLyTaxi\\QuanLyTaxi\\quanlytaxi\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DFCBE76F-412A-46D9-9DDA-3B63FDEF5563}|quanlytaxi\\quanlytaxi.csproj|e:\\project\\doannet_quanlytaxi\\quanlytaxi\\quanlytaxi\\quanlytaxi\\frmdatxe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{DFCBE76F-412A-46D9-9DDA-3B63FDEF5563}|quanlytaxi\\quanlytaxi.csproj|solutionrelative:quanlytaxi\\frmdatxe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DFCBE76F-412A-46D9-9DDA-3B63FDEF5563}|quanlytaxi\\quanlytaxi.csproj|e:\\project\\doannet_quanlytaxi\\quanlytaxi\\quanlytaxi\\quanlytaxi\\frmkhachhang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{DFCBE76F-412A-46D9-9DDA-3B63FDEF5563}|quanlytaxi\\quanlytaxi.csproj|solutionrelative:quanlytaxi\\frmkhachhang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DFCBE76F-412A-46D9-9DDA-3B63FDEF5563}|quanlytaxi\\quanlytaxi.csproj|e:\\project\\doannet_quanlytaxi\\quanlytaxi\\quanlytaxi\\quanlytaxi\\frmdmquanlytaixe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{DFCBE76F-412A-46D9-9DDA-3B63FDEF5563}|quanlytaxi\\quanlytaxi.csproj|solutionrelative:quanlytaxi\\frmdmquanlytaixe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{DFCBE76F-412A-46D9-9DDA-3B63FDEF5563}|quanlytaxi\\quanlytaxi.csproj|e:\\project\\doannet_quanlytaxi\\quanlytaxi\\quanlytaxi\\quanlytaxi\\frmthongke.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{DFCBE76F-412A-46D9-9DDA-3B63FDEF5563}|quanlytaxi\\quanlytaxi.csproj|solutionrelative:quanlytaxi\\frmthongke.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DFCBE76F-412A-46D9-9DDA-3B63FDEF5563}|quanlytaxi\\quanlytaxi.csproj|E:\\project\\DoAnNet_QuanLyTaxi\\QuanLyTaxi\\quanlytaxi\\quanlytaxi\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{DFCBE76F-412A-46D9-9DDA-3B63FDEF5563}|quanlytaxi\\quanlytaxi.csproj|e:\\project\\doannet_quanlytaxi\\quanlytaxi\\quanlytaxi\\quanlytaxi\\frmthongke.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DFCBE76F-412A-46D9-9DDA-3B63FDEF5563}|quanlytaxi\\quanlytaxi.csproj|solutionrelative:quanlytaxi\\frmthongke.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DFCBE76F-412A-46D9-9DDA-3B63FDEF5563}|quanlytaxi\\quanlytaxi.csproj|e:\\project\\doannet_quanlytaxi\\quanlytaxi\\quanlytaxi\\quanlytaxi\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DFCBE76F-412A-46D9-9DDA-3B63FDEF5563}|quanlytaxi\\quanlytaxi.csproj|solutionrelative:quanlytaxi\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DFCBE76F-412A-46D9-9DDA-3B63FDEF5563}|quanlytaxi\\quanlytaxi.csproj|e:\\project\\doannet_quanlytaxi\\quanlytaxi\\quanlytaxi\\quanlytaxi\\frmdmquanlyxe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DFCBE76F-412A-46D9-9DDA-3B63FDEF5563}|quanlytaxi\\quanlytaxi.csproj|solutionrelative:quanlytaxi\\frmdmquanlyxe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DFCBE76F-412A-46D9-9DDA-3B63FDEF5563}|quanlytaxi\\quanlytaxi.csproj|e:\\project\\doannet_quanlytaxi\\quanlytaxi\\quanlytaxi\\quanlytaxi\\frmmain.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DFCBE76F-412A-46D9-9DDA-3B63FDEF5563}|quanlytaxi\\quanlytaxi.csproj|solutionrelative:quanlytaxi\\frmmain.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DFCBE76F-412A-46D9-9DDA-3B63FDEF5563}|quanlytaxi\\quanlytaxi.csproj|E:\\project\\DoAnNet_QuanLyTaxi\\QuanLyTaxi\\quanlytaxi\\quanlytaxi\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -37,6 +21,14 @@
     {
       "AbsoluteMoniker": "D:0:0:{DFCBE76F-412A-46D9-9DDA-3B63FDEF5563}|quanlytaxi\\quanlytaxi.csproj|E:\\project\\DoAnNet_QuanLyTaxi\\QuanLyTaxi\\quanlytaxi\\quanlytaxi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DFCBE76F-412A-46D9-9DDA-3B63FDEF5563}|quanlytaxi\\quanlytaxi.csproj|solutionrelative:quanlytaxi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DFCBE76F-412A-46D9-9DDA-3B63FDEF5563}|quanlytaxi\\quanlytaxi.csproj|e:\\project\\doannet_quanlytaxi\\quanlytaxi\\quanlytaxi\\quanlytaxi\\frmdatxe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DFCBE76F-412A-46D9-9DDA-3B63FDEF5563}|quanlytaxi\\quanlytaxi.csproj|solutionrelative:quanlytaxi\\frmdatxe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DFCBE76F-412A-46D9-9DDA-3B63FDEF5563}|quanlytaxi\\quanlytaxi.csproj|e:\\project\\doannet_quanlytaxi\\quanlytaxi\\quanlytaxi\\quanlytaxi\\frmdatxe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{DFCBE76F-412A-46D9-9DDA-3B63FDEF5563}|quanlytaxi\\quanlytaxi.csproj|solutionrelative:quanlytaxi\\frmdatxe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -66,69 +58,58 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "frmKhachHang.cs [Design]",
-              "DocumentMoniker": "E:\\project\\DoAnNet_QuanLyTaxi\\QuanLyTaxi\\quanlytaxi\\quanlytaxi\\frmKhachHang.cs",
-              "RelativeDocumentMoniker": "quanlytaxi\\frmKhachHang.cs",
-              "ToolTip": "E:\\project\\DoAnNet_QuanLyTaxi\\QuanLyTaxi\\quanlytaxi\\quanlytaxi\\frmKhachHang.cs [Design]",
-              "RelativeToolTip": "quanlytaxi\\frmKhachHang.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-28T07:47:13.094Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "frmDMQuanLyTaiXe.cs [Design]",
-              "DocumentMoniker": "E:\\project\\DoAnNet_QuanLyTaxi\\QuanLyTaxi\\quanlytaxi\\quanlytaxi\\frmDMQuanLyTaiXe.cs",
-              "RelativeDocumentMoniker": "quanlytaxi\\frmDMQuanLyTaiXe.cs",
-              "ToolTip": "E:\\project\\DoAnNet_QuanLyTaxi\\QuanLyTaxi\\quanlytaxi\\quanlytaxi\\frmDMQuanLyTaiXe.cs [Design]",
-              "RelativeToolTip": "quanlytaxi\\frmDMQuanLyTaiXe.cs [Design]",
+              "Title": "frmMain.cs",
+              "DocumentMoniker": "E:\\project\\DoAnNet_QuanLyTaxi\\QuanLyTaxi\\quanlytaxi\\quanlytaxi\\frmMain.cs",
+              "RelativeDocumentMoniker": "quanlytaxi\\frmMain.cs",
+              "ToolTip": "E:\\project\\DoAnNet_QuanLyTaxi\\QuanLyTaxi\\quanlytaxi\\quanlytaxi\\frmMain.cs",
+              "RelativeToolTip": "quanlytaxi\\frmMain.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAgwDsAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-28T07:46:20.961Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-11-28T12:59:02.27Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
+              "Title": "frmDatXe.cs",
+              "DocumentMoniker": "E:\\project\\DoAnNet_QuanLyTaxi\\QuanLyTaxi\\quanlytaxi\\quanlytaxi\\frmDatXe.cs",
+              "RelativeDocumentMoniker": "quanlytaxi\\frmDatXe.cs",
+              "ToolTip": "E:\\project\\DoAnNet_QuanLyTaxi\\QuanLyTaxi\\quanlytaxi\\quanlytaxi\\frmDatXe.cs",
+              "RelativeToolTip": "quanlytaxi\\frmDatXe.cs",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAAAPAAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T12:55:21.886Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "frmThongKe.cs",
+              "DocumentMoniker": "E:\\project\\DoAnNet_QuanLyTaxi\\QuanLyTaxi\\quanlytaxi\\quanlytaxi\\frmThongKe.cs",
+              "RelativeDocumentMoniker": "quanlytaxi\\frmThongKe.cs",
+              "ToolTip": "E:\\project\\DoAnNet_QuanLyTaxi\\QuanLyTaxi\\quanlytaxi\\quanlytaxi\\frmThongKe.cs",
+              "RelativeToolTip": "quanlytaxi\\frmThongKe.cs",
+              "ViewState": "AgIAAKsAAAAAAAAAAAAYwMEAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T12:45:32.805Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "frmDatXe.cs [Design]",
               "DocumentMoniker": "E:\\project\\DoAnNet_QuanLyTaxi\\QuanLyTaxi\\quanlytaxi\\quanlytaxi\\frmDatXe.cs",
               "RelativeDocumentMoniker": "quanlytaxi\\frmDatXe.cs",
               "ToolTip": "E:\\project\\DoAnNet_QuanLyTaxi\\QuanLyTaxi\\quanlytaxi\\quanlytaxi\\frmDatXe.cs [Design]",
               "RelativeToolTip": "quanlytaxi\\frmDatXe.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-28T07:46:13.08Z",
+              "WhenOpened": "2025-11-28T10:24:26.802Z",
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "frmMain.Designer.cs",
-              "DocumentMoniker": "E:\\project\\DoAnNet_QuanLyTaxi\\QuanLyTaxi\\quanlytaxi\\quanlytaxi\\frmMain.Designer.cs",
-              "RelativeDocumentMoniker": "quanlytaxi\\frmMain.Designer.cs",
-              "ToolTip": "E:\\project\\DoAnNet_QuanLyTaxi\\QuanLyTaxi\\quanlytaxi\\quanlytaxi\\frmMain.Designer.cs",
-              "RelativeToolTip": "quanlytaxi\\frmMain.Designer.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAgwFcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-28T07:43:12.773Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "frmDMQuanLyXe.cs",
-              "DocumentMoniker": "E:\\project\\DoAnNet_QuanLyTaxi\\QuanLyTaxi\\quanlytaxi\\quanlytaxi\\frmDMQuanLyXe.cs",
-              "RelativeDocumentMoniker": "quanlytaxi\\frmDMQuanLyXe.cs",
-              "ToolTip": "E:\\project\\DoAnNet_QuanLyTaxi\\QuanLyTaxi\\quanlytaxi\\quanlytaxi\\frmDMQuanLyXe.cs",
-              "RelativeToolTip": "quanlytaxi\\frmDMQuanLyXe.cs",
-              "ViewState": "AgIAACoAAAAAAAAAAAAYwBYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-28T07:41:46.985Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "frmThongKe.cs [Design]",
               "DocumentMoniker": "E:\\project\\DoAnNet_QuanLyTaxi\\QuanLyTaxi\\quanlytaxi\\quanlytaxi\\frmThongKe.cs",
               "RelativeDocumentMoniker": "quanlytaxi\\frmThongKe.cs",
@@ -140,20 +121,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "frmMain.cs",
-              "DocumentMoniker": "E:\\project\\DoAnNet_QuanLyTaxi\\QuanLyTaxi\\quanlytaxi\\quanlytaxi\\frmMain.cs",
-              "RelativeDocumentMoniker": "quanlytaxi\\frmMain.cs",
-              "ToolTip": "E:\\project\\DoAnNet_QuanLyTaxi\\QuanLyTaxi\\quanlytaxi\\quanlytaxi\\frmMain.cs",
-              "RelativeToolTip": "quanlytaxi\\frmMain.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAAACYAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-27T06:53:10.045Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 3,
               "Title": "frmMain.cs [Design]",
               "DocumentMoniker": "E:\\project\\DoAnNet_QuanLyTaxi\\QuanLyTaxi\\quanlytaxi\\quanlytaxi\\frmMain.cs",
               "RelativeDocumentMoniker": "quanlytaxi\\frmMain.cs",
@@ -165,13 +133,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "E:\\project\\DoAnNet_QuanLyTaxi\\QuanLyTaxi\\quanlytaxi\\quanlytaxi\\Program.cs",
               "RelativeDocumentMoniker": "quanlytaxi\\Program.cs",
               "ToolTip": "E:\\project\\DoAnNet_QuanLyTaxi\\QuanLyTaxi\\quanlytaxi\\quanlytaxi\\Program.cs",
               "RelativeToolTip": "quanlytaxi\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAoAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-25T20:34:19.814Z",
               "EditorCaption": ""

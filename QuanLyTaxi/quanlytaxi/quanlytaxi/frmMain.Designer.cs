@@ -28,6 +28,7 @@
             this.tabQuanLyXe = new System.Windows.Forms.TabPage();
             this.tabDatXe = new System.Windows.Forms.TabPage();
             this.tabKH = new System.Windows.Forms.TabPage();
+            this.tabThongKe = new System.Windows.Forms.TabPage();
             this.menuStrip1.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.SuspendLayout();
@@ -92,10 +93,11 @@
             this.tabMain.Controls.Add(this.tabQuanLyXe);
             this.tabMain.Controls.Add(this.tabDatXe);
             this.tabMain.Controls.Add(this.tabKH);
-            this.tabMain.Location = new System.Drawing.Point(13, 101);
+            this.tabMain.Controls.Add(this.tabThongKe);
+            this.tabMain.Location = new System.Drawing.Point(12, 66);
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
-            this.tabMain.Size = new System.Drawing.Size(1139, 575);
+            this.tabMain.Size = new System.Drawing.Size(1139, 608);
             this.tabMain.TabIndex = 2;
             // 
             // tabQuanLyTaiXe
@@ -103,7 +105,7 @@
             this.tabQuanLyTaiXe.Location = new System.Drawing.Point(4, 25);
             this.tabQuanLyTaiXe.Name = "tabQuanLyTaiXe";
             this.tabQuanLyTaiXe.Padding = new System.Windows.Forms.Padding(3);
-            this.tabQuanLyTaiXe.Size = new System.Drawing.Size(1131, 546);
+            this.tabQuanLyTaiXe.Size = new System.Drawing.Size(1131, 579);
             this.tabQuanLyTaiXe.TabIndex = 0;
             this.tabQuanLyTaiXe.Text = "Quản lý tài xế";
             this.tabQuanLyTaiXe.UseVisualStyleBackColor = true;
@@ -137,6 +139,16 @@
             this.tabKH.TabIndex = 3;
             this.tabKH.Text = "Quản lý khách hàng";
             this.tabKH.UseVisualStyleBackColor = true;
+            // 
+            // tabThongKe
+            // 
+            this.tabThongKe.Location = new System.Drawing.Point(4, 25);
+            this.tabThongKe.Name = "tabThongKe";
+            this.tabThongKe.Padding = new System.Windows.Forms.Padding(3);
+            this.tabThongKe.Size = new System.Drawing.Size(1131, 579);
+            this.tabThongKe.TabIndex = 4;
+            this.tabThongKe.Text = "Thống kê";
+            this.tabThongKe.UseVisualStyleBackColor = true;
             // 
             // frmMain
             // 
@@ -173,5 +185,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolDMThongKe;
         private System.Windows.Forms.TabPage tabDatXe;
         private System.Windows.Forms.TabPage tabKH;
+        private System.Windows.Forms.TabPage tabThongKe;
     }
 }

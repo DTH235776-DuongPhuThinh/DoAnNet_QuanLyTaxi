@@ -90,3 +90,24 @@ INSERT INTO datxe (MaKH, MaXe, MaTaiXe, DiemDon, DiemDen, SoCho) VALUES
 (3, 3, 3, 'Thu Duc', 'Quan 3', 4),
 (4, 4, 4, 'Quan 2', 'Vung Tau', 16),
 (5, 1, 5, 'Quan 5', 'Ben xe Mien Tay', 4);
+
+-- ===============================
+-- BẢNG THỐNG KÊ TÀI XẾ
+-- ===============================
+CREATE TABLE thongke (
+    MaTaiXe INT PRIMARY KEY,
+    SoChuyen INT DEFAULT 0,
+    DoanhThu DECIMAL(18,2) DEFAULT 0,
+    FOREIGN KEY (MaTaiXe) REFERENCES taixe(MaTaiXe)
+);
+
+-- ===============================
+-- MOCK DATA BẢNG THỐNG KÊ
+-- ===============================
+INSERT INTO thongke (MaTaiXe, SoChuyen, DoanhThu) VALUES
+(1, 1, 150000),   
+(2, 1, 200000),   
+(3, 1, 160000),   
+(4, 1, 480000),   
+(5, 1, 120000);   
+

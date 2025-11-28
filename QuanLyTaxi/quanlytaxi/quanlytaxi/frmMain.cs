@@ -53,6 +53,13 @@ namespace quanlytaxi
             tabKH.Controls.Add(frmKH); // tabKhachHang là TabPage cho Khách hàng
             frmKH.Show();
 
+            frmThongKe frmTK = new frmThongKe();
+            frmTK.TopLevel = false;
+            frmTK.FormBorderStyle = FormBorderStyle.None;
+            frmTK.Dock = DockStyle.Fill;
+            tabThongKe.Controls.Add(frmTK);
+            frmTK.Show();
+
         }
 
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
