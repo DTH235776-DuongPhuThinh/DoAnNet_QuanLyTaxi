@@ -37,8 +37,22 @@ namespace quanlytaxi
             frmXe.Dock = DockStyle.Fill;
             tabQuanLyXe.Controls.Add(frmXe);
             frmXe.Show();
+            // Mở frmDatXe
+            frmDatXe frmDat = new frmDatXe();
+            frmDat.TopLevel = false;
+            frmDat.FormBorderStyle = FormBorderStyle.None;
+            frmDat.Dock = DockStyle.Fill;
+            tabDatXe.Controls.Add(frmDat); // tabDatXe là TabPage cho Đặt xe
+            frmDat.Show();
 
-            
+            // Mở frmKhachHang
+            frmKhachHang frmKH = new frmKhachHang();
+            frmKH.TopLevel = false;
+            frmKH.FormBorderStyle = FormBorderStyle.None;
+            frmKH.Dock = DockStyle.Fill;
+            tabKH.Controls.Add(frmKH); // tabKhachHang là TabPage cho Khách hàng
+            frmKH.Show();
+
         }
 
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
@@ -84,10 +98,16 @@ namespace quanlytaxi
         {
             OpenTab("Quản lý xe", new frmDMQuanLyXe());
         }
-
-        private void toolDMThongKe_Click(object sender, EventArgs e)
+        // ===== MENU ĐẶT XE =====
+        private void toolDatXe_Click(object sender, EventArgs e)
         {
-            OpenTab("Thống kê", new frmThongKe());
+            OpenTab("Đặt xe", new frmDatXe());
+        }
+
+        // ===== MENU KHÁCH HÀNG =====
+        private void toolKhachHang_Click(object sender, EventArgs e)
+        {
+            OpenTab("Khách hàng", new frmKhachHang());
         }
     }
 }

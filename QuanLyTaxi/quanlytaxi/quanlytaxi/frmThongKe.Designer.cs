@@ -53,16 +53,16 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(493, 9);
+            this.label1.Location = new System.Drawing.Point(414, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(237, 45);
+            this.label1.Size = new System.Drawing.Size(201, 38);
             this.label1.TabIndex = 0;
             this.label1.Text = "THỐNG KÊ";
             // 
             // dgvThongKe
             // 
             this.dgvThongKe.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvThongKe.Location = new System.Drawing.Point(12, 214);
+            this.dgvThongKe.Location = new System.Drawing.Point(20, 231);
             this.dgvThongKe.Name = "dgvThongKe";
             this.dgvThongKe.RowHeadersWidth = 62;
             this.dgvThongKe.RowTemplate.Height = 28;
@@ -135,7 +135,7 @@
             this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(16, 95);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(103, 27);
+            this.label2.Size = new System.Drawing.Size(84, 22);
             this.label2.TabIndex = 0;
             this.label2.Text = "Mã tài xế";
             // 
@@ -145,7 +145,7 @@
             this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(16, 151);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(108, 27);
+            this.label3.Size = new System.Drawing.Size(88, 22);
             this.label3.TabIndex = 0;
             this.label3.Text = "Tên tài xế";
             // 
@@ -155,7 +155,7 @@
             this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(352, 95);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(112, 27);
+            this.label4.Size = new System.Drawing.Size(90, 22);
             this.label4.TabIndex = 0;
             this.label4.Text = "Số chuyến";
             // 
@@ -165,7 +165,7 @@
             this.label5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(351, 151);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(113, 27);
+            this.label5.Size = new System.Drawing.Size(89, 22);
             this.label5.TabIndex = 0;
             this.label5.Text = "Doanh thu";
             // 
@@ -175,7 +175,7 @@
             this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(580, 95);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(109, 27);
+            this.label6.Size = new System.Drawing.Size(89, 22);
             this.label6.TabIndex = 0;
             this.label6.Text = "Trạng thái";
             // 
@@ -183,28 +183,28 @@
             // 
             this.txtMaTaiXe.Location = new System.Drawing.Point(125, 92);
             this.txtMaTaiXe.Name = "txtMaTaiXe";
-            this.txtMaTaiXe.Size = new System.Drawing.Size(100, 35);
+            this.txtMaTaiXe.Size = new System.Drawing.Size(100, 30);
             this.txtMaTaiXe.TabIndex = 9;
             // 
             // txtTenTaiXe
             // 
             this.txtTenTaiXe.Location = new System.Drawing.Point(125, 148);
             this.txtTenTaiXe.Name = "txtTenTaiXe";
-            this.txtTenTaiXe.Size = new System.Drawing.Size(204, 35);
+            this.txtTenTaiXe.Size = new System.Drawing.Size(204, 30);
             this.txtTenTaiXe.TabIndex = 9;
             // 
             // txtSoChuyen
             // 
             this.txtSoChuyen.Location = new System.Drawing.Point(474, 92);
             this.txtSoChuyen.Name = "txtSoChuyen";
-            this.txtSoChuyen.Size = new System.Drawing.Size(100, 35);
+            this.txtSoChuyen.Size = new System.Drawing.Size(100, 30);
             this.txtSoChuyen.TabIndex = 9;
             // 
             // txtDoanhThu
             // 
             this.txtDoanhThu.Location = new System.Drawing.Point(474, 151);
             this.txtDoanhThu.Name = "txtDoanhThu";
-            this.txtDoanhThu.Size = new System.Drawing.Size(100, 35);
+            this.txtDoanhThu.Size = new System.Drawing.Size(100, 30);
             this.txtDoanhThu.TabIndex = 9;
             // 
             // cboTrangThai
@@ -212,14 +212,14 @@
             this.cboTrangThai.FormattingEnabled = true;
             this.cboTrangThai.Location = new System.Drawing.Point(695, 92);
             this.cboTrangThai.Name = "cboTrangThai";
-            this.cboTrangThai.Size = new System.Drawing.Size(121, 35);
+            this.cboTrangThai.Size = new System.Drawing.Size(121, 30);
             this.cboTrangThai.TabIndex = 10;
             // 
             // frmThongKe
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 27F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1172, 575);
+            this.ClientSize = new System.Drawing.Size(1089, 505);
             this.Controls.Add(this.cboTrangThai);
             this.Controls.Add(this.txtDoanhThu);
             this.Controls.Add(this.txtTenTaiXe);
