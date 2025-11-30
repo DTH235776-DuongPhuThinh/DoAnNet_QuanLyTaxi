@@ -1,75 +1,65 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace quanlytaxi
 {
     public partial class frmDatXe : Form
     {
+        // Khai báo kết nối và DataAdapter
+        DataSet ds = new DataSet("dsQLTaxi");
+        MySqlDataAdapter daDatXe;
+        MySqlConnection conn = new MySqlConnection();
+
+        // Biến cờ để tránh vòng lặp vô hạn khi gán text tự động (quan trọng cho Lookup)
+        private bool isUpdatingText = false;
+
         public frmDatXe()
         {
             InitializeComponent();
         }
 
-        DataSet ds = new DataSet("dsQLTaxi");
-        MySqlDataAdapter daDatXe;
-
         private void frmDatXe_Load(object sender, EventArgs e)
         {
+            // Thiết lập Form
             this.AutoSize = false;
             this.AutoScaleMode = AutoScaleMode.Font;
             this.FormBorderStyle = FormBorderStyle.None;
             this.Dock = DockStyle.Fill;
 
-            MySqlConnection conn = new MySqlConnection();
-            conn.ConnectionString = "server=localhost;user=root;password=cyclone221;database=qltaxi;";
+            conn.ConnectionString = "server=localhost;user=root;password=248569;database=qltaxi;";
 
-            // ===== Load bảng Đặt Xe =====
-            string sQueryDatXe = @"
-            SELECT dx.MaDatXe,
-                   kh.MaKH,
-                   kh.HoTen AS TenKhach,
-                   kh.SDT AS SDTKhach,
-                   dx.DiemDon,
-                   dx.DiemDen,
-                   dx.MaXe,
-                   tx.HoTen AS TenTaiXe,
-                   lx.SoCho
-            FROM datxe dx
-            LEFT JOIN khachhang kh ON dx.MaKH = kh.MaKH
-            LEFT JOIN taixe tx ON dx.MaTaiXe = tx.MaTaiXe
-            LEFT JOIN loaixe lx ON dx.MaXe = lx.MaXe;
-            ";
+            LoadDatXe();
 
-            daDatXe = new MySqlDataAdapter(sQueryDatXe, conn);
-            ds.Clear();
-            daDatXe.Fill(ds, "tblDatXe");
-            dgvDatXe.DataSource = ds.Tables["tblDatXe"];
-
-
-
-            // ===== Load ComboBox Số chỗ =====
             DataTable dtSoCho = new DataTable();
             dtSoCho.Columns.Add("Value");
             dtSoCho.Columns.Add("Text");
-
             dtSoCho.Rows.Add("4", "4 chỗ");
             dtSoCho.Rows.Add("7", "7 chỗ");
             dtSoCho.Rows.Add("16", "16 chỗ");
-
             cboSoCho.DataSource = dtSoCho;
             cboSoCho.DisplayMember = "Text";
             cboSoCho.ValueMember = "Value";
+            if (cboSoCho.Items.Count > 0) cboSoCho.SelectedIndex = 0;
 
+            // Format DataGridView (Đã thêm NgayDat)
+            FormatDataGridView();
 
-            // ===== Format DataGridView =====
+            // Thiết lập Command cho DataAdapter (Đã FIX NgayDat)
+            SetupDataAdapterCommands();
+
+            // Gắn sự kiện TextChanged cho các TextBox Mã để tự động lookup
+            txtMaKhachHang.TextChanged += new EventHandler(txtMaKhachHang_TextChanged);
+            txtMaTaiXe.TextChanged += new EventHandler(txtMaTaiXe_TextChanged);
+
+            dtpNgayDatXe.Format = DateTimePickerFormat.Custom;
+            dtpNgayDatXe.CustomFormat = "dd/MM/yyyy";
+            dtpNgayDatXe.ShowUpDown = true;
+        }
+
+        private void FormatDataGridView()
+        {
             dgvDatXe.Columns["MaDatXe"].HeaderText = "Mã đặt xe";
             dgvDatXe.Columns["MaDatXe"].Width = 80;
 
@@ -91,82 +81,246 @@ namespace quanlytaxi
             dgvDatXe.Columns["MaXe"].HeaderText = "Mã xe";
             dgvDatXe.Columns["MaXe"].Width = 80;
 
+            dgvDatXe.Columns["MaTaiXe"].HeaderText = "Mã TX";
+            dgvDatXe.Columns["MaTaiXe"].Width = 80;
+
             dgvDatXe.Columns["TenTaiXe"].HeaderText = "Tên tài xế";
             dgvDatXe.Columns["TenTaiXe"].Width = 150;
 
             dgvDatXe.Columns["SoCho"].HeaderText = "Số chỗ";
             dgvDatXe.Columns["SoCho"].Width = 70;
 
+            dgvDatXe.Columns["NgayDat"].HeaderText = "Ngày Đặt";
+            dgvDatXe.Columns["NgayDat"].Width = 150;
+            dgvDatXe.Columns["NgayDat"].DefaultCellStyle.Format = "dd/MM/yyyy";
 
             dgvDatXe.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
 
-            // ===== INSERT =====
-            string sInsert = @"INSERT INTO datxe(MaKH,HoTen,SDT,DiemDon,DiemDen,MaXe,TenTaiXe,SoCho)
-                       VALUES(@MaKH,@HoTen,@SDT,@DiemDon,@DiemDen,@MaXe,@TenTaiXe,@SoCho)";
+        // --- Setup DataAdapter Commands ---
+        private void SetupDataAdapterCommands()
+        {
+            // ===== INSERT (Đã thêm NgayDat) =====
+            string sInsert = @"INSERT INTO datxe(MaKH, MaXe, MaTaiXe, DiemDon, DiemDen, SoCho, NgayDat)
+                               VALUES(@MaKH, @MaXe, @MaTaiXe, @DiemDon, @DiemDen, @SoCho, @NgayDat)";
             MySqlCommand cmdInsert = new MySqlCommand(sInsert, conn);
             cmdInsert.Parameters.Add("@MaKH", MySqlDbType.Int32, 0, "MaKH");
-            cmdInsert.Parameters.Add("@HoTen", MySqlDbType.VarChar, 100, "HoTen");
-            cmdInsert.Parameters.Add("@SDT", MySqlDbType.VarChar, 15, "SDT");
-            cmdInsert.Parameters.Add("@DiemDon", MySqlDbType.VarChar, 200, "DiemDon");
-            cmdInsert.Parameters.Add("@DiemDen", MySqlDbType.VarChar, 200, "DiemDen");
             cmdInsert.Parameters.Add("@MaXe", MySqlDbType.Int32, 0, "MaXe");
-            cmdInsert.Parameters.Add("@TenTaiXe", MySqlDbType.VarChar, 100, "TenTaiXe");
+            cmdInsert.Parameters.Add("@MaTaiXe", MySqlDbType.Int32, 0, "MaTaiXe");
+            cmdInsert.Parameters.Add("@DiemDon", MySqlDbType.VarChar, 255, "DiemDon");
+            cmdInsert.Parameters.Add("@DiemDen", MySqlDbType.VarChar, 255, "DiemDen");
             cmdInsert.Parameters.Add("@SoCho", MySqlDbType.Int32, 0, "SoCho");
+            cmdInsert.Parameters.Add("@NgayDat", MySqlDbType.DateTime, 0, "NgayDat"); // Thêm Parameter NgayDat
             daDatXe.InsertCommand = cmdInsert;
 
-            // ===== UPDATE =====
-            string sUpdate = @"UPDATE datxe SET MaKH=@MaKH,HoTen=@HoTen,SDT=@SDT,DiemDon=@DiemDon,
-                       DiemDen=@DiemDen,MaXe=@MaXe,TenTaiXe=@TenTaiXe,SoCho=@SoCho
-                       WHERE MaDatXe=@MaDatXe";
+            // ===== UPDATE (Đã thêm NgayDat) =====
+            string sUpdate = @"UPDATE datxe SET MaKH=@MaKH, MaXe=@MaXe, MaTaiXe=@MaTaiXe, DiemDon=@DiemDon,
+                               DiemDen=@DiemDen, SoCho=@SoCho, NgayDat=@NgayDat
+                               WHERE MaDatXe=@MaDatXe";
             MySqlCommand cmdUpdate = new MySqlCommand(sUpdate, conn);
             cmdUpdate.Parameters.Add("@MaKH", MySqlDbType.Int32, 0, "MaKH");
-            cmdUpdate.Parameters.Add("@HoTen", MySqlDbType.VarChar, 100, "HoTen");
-            cmdUpdate.Parameters.Add("@SDT", MySqlDbType.VarChar, 15, "SDT");
-            cmdUpdate.Parameters.Add("@DiemDon", MySqlDbType.VarChar, 200, "DiemDon");
-            cmdUpdate.Parameters.Add("@DiemDen", MySqlDbType.VarChar, 200, "DiemDen");
             cmdUpdate.Parameters.Add("@MaXe", MySqlDbType.Int32, 0, "MaXe");
-            cmdUpdate.Parameters.Add("@TenTaiXe", MySqlDbType.VarChar, 100, "TenTaiXe");
+            cmdUpdate.Parameters.Add("@MaTaiXe", MySqlDbType.Int32, 0, "MaTaiXe");
+            cmdUpdate.Parameters.Add("@DiemDon", MySqlDbType.VarChar, 255, "DiemDon");
+            cmdUpdate.Parameters.Add("@DiemDen", MySqlDbType.VarChar, 255, "DiemDen");
             cmdUpdate.Parameters.Add("@SoCho", MySqlDbType.Int32, 0, "SoCho");
+            cmdUpdate.Parameters.Add("@NgayDat", MySqlDbType.DateTime, 0, "NgayDat"); // Thêm Parameter NgayDat
             cmdUpdate.Parameters.Add("@MaDatXe", MySqlDbType.Int32, 0, "MaDatXe");
             daDatXe.UpdateCommand = cmdUpdate;
 
-            // ===== DELETE =====
+            // ===== DELETE (Giữ nguyên) =====
             string sDelete = @"DELETE FROM datxe WHERE MaDatXe=@MaDatXe";
             MySqlCommand cmdDelete = new MySqlCommand(sDelete, conn);
             cmdDelete.Parameters.Add("@MaDatXe", MySqlDbType.Int32, 0, "MaDatXe");
             daDatXe.DeleteCommand = cmdDelete;
-
         }
 
+        // --- Hàm Tải Dữ Liệu Riêng ---
+        private void LoadDatXe()
+        {
+            // Query JOIN để lấy tất cả thông tin cần thiết, bao gồm NgayDat
+            string sQueryDatXe = @"
+            SELECT dx.MaDatXe,
+                   dx.MaKH,
+                   kh.HoTen AS TenKhach,
+                   kh.SDT AS SDTKhach,
+                   dx.DiemDon,
+                   dx.DiemDen,
+                   dx.MaXe,
+                   dx.MaTaiXe,        
+                   tx.HoTen AS TenTaiXe,
+                   dx.SoCho,
+                   dx.NgayDat              
+            FROM datxe dx
+            LEFT JOIN khachhang kh ON dx.MaKH = kh.MaKH
+            LEFT JOIN taixe tx ON dx.MaTaiXe = tx.MaTaiXe
+            ORDER BY dx.NgayDat DESC;
+            ";
+
+            daDatXe = new MySqlDataAdapter(sQueryDatXe, conn);
+            ds.Clear();
+            daDatXe.Fill(ds, "tblDatXe");
+            dgvDatXe.DataSource = ds.Tables["tblDatXe"];
+        }
+
+        // --- Hàm Lookup Khách Hàng (Tự động điền) ---
+        private void LookupKhachHang(int maKH)
+        {
+            isUpdatingText = true;
+            txtTenKH.Text = "";
+            txtSDTKH.Text = "";
+            if (maKH <= 0)
+            {
+                isUpdatingText = false;
+                return;
+            }
+
+            string query = "SELECT HoTen, SDT FROM khachhang WHERE MaKH = @MaKH";
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@MaKH", maKH);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        txtTenKH.Text = reader["HoTen"].ToString();
+                        txtSDTKH.Text = reader["SDT"].ToString();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                // Bỏ qua lỗi kết nối trong khi gõ nhanh
+            }
+            finally
+            {
+                if (conn.State == ConnectionState.Open) conn.Close();
+                isUpdatingText = false;
+            }
+        }
+
+        // --- Hàm Lookup Tài Xế (Tự động điền) ---
+        private void LookupTaiXe(int maTaiXe)
+        {
+            isUpdatingText = true;
+            txtTenTaiXe.Text = "";
+            if (maTaiXe <= 0)
+            {
+                isUpdatingText = false;
+                return;
+            }
+
+            string query = "SELECT HoTen FROM taixe WHERE MaTaiXe = @MaTaiXe";
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@MaTaiXe", maTaiXe);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        txtTenTaiXe.Text = reader["HoTen"].ToString();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                // Bỏ qua lỗi kết nối
+            }
+            finally
+            {
+                if (conn.State == ConnectionState.Open) conn.Close();
+                isUpdatingText = false;
+            }
+        }
+
+        // --- Sự kiện TextChanged Mã KH ---
+        private void txtMaKhachHang_TextChanged(object sender, EventArgs e)
+        {
+            if (isUpdatingText) return;
+            if (int.TryParse(txtMaKhachHang.Text, out int maKH))
+            {
+                LookupKhachHang(maKH);
+            }
+            else
+            {
+                txtTenKH.Text = "";
+                txtSDTKH.Text = "";
+            }
+        }
+
+        // --- Sự kiện TextChanged Mã Tài Xế ---
+        private void txtMaTaiXe_TextChanged(object sender, EventArgs e)
+        {
+            if (isUpdatingText) return;
+            if (int.TryParse(txtMaTaiXe.Text, out int maTaiXe))
+            {
+                LookupTaiXe(maTaiXe);
+            }
+            else
+            {
+                txtTenTaiXe.Text = "";
+            }
+        }
+
+        // --- Sự kiện DataGridView Click (CẬP NHẬT NGÀY ĐẶT) ---
         private void dgvDatXe_Click(object sender, EventArgs e)
         {
             if (dgvDatXe.SelectedRows.Count > 0)
             {
                 DataGridViewRow dr = dgvDatXe.SelectedRows[0];
 
-                // Hiển thị thông tin khách
+                isUpdatingText = true;
+
+                // Hiển thị thông tin
                 txtMaKhachHang.Text = dr.Cells["MaKH"].Value.ToString();
                 txtTenKH.Text = dr.Cells["TenKhach"].Value.ToString();
                 txtSDTKH.Text = dr.Cells["SDTKhach"].Value.ToString();
 
-                // Hiển thị thông tin điểm đón / điểm đến
                 txtDiemDon.Text = dr.Cells["DiemDon"].Value.ToString();
                 txtDiemDen.Text = dr.Cells["DiemDen"].Value.ToString();
 
-                // Hiển thị thông tin xe và tài xế
                 txtMaXe.Text = dr.Cells["MaXe"].Value.ToString();
+                txtMaTaiXe.Text = dr.Cells["MaTaiXe"].Value.ToString();
                 txtTenTaiXe.Text = dr.Cells["TenTaiXe"].Value.ToString();
 
-                // Hiển thị số chỗ
                 cboSoCho.SelectedValue = dr.Cells["SoCho"].Value.ToString();
+
+                // HIỂN THỊ NGÀY ĐẶT TỪ DATABASE VÀO DateTimePicker
+                try
+                {
+                    object ngayDatValue = dr.Cells["NgayDat"].Value;
+                    if (ngayDatValue != DBNull.Value && ngayDatValue != null)
+                    {
+                        // Đảm bảo kiểu dữ liệu là DateTime trước khi gán
+                        dtpNgayDatXe.Value = Convert.ToDateTime(ngayDatValue);
+                    }
+                    else
+                    {
+                        dtpNgayDatXe.Value = DateTime.Now;
+                    }
+                }
+                catch (Exception)
+                {
+                    dtpNgayDatXe.Value = DateTime.Now;
+                }
+
+                isUpdatingText = false;
             }
         }
 
+        // --- Sự kiện Thêm (CẬP NHẬT NGÀY ĐẶT) ---
         private void btnThem_Click(object sender, EventArgs e)
         {
-            // Kiểm tra thông tin nhập
+            // Kiểm tra thông tin bắt buộc
             if (string.IsNullOrWhiteSpace(txtMaKhachHang.Text) ||
                 string.IsNullOrWhiteSpace(txtMaXe.Text) ||
+                string.IsNullOrWhiteSpace(txtMaTaiXe.Text) ||
                 string.IsNullOrWhiteSpace(txtDiemDon.Text) ||
                 string.IsNullOrWhiteSpace(txtDiemDen.Text))
             {
@@ -175,22 +329,41 @@ namespace quanlytaxi
                 return;
             }
 
+            try
+            {
+                DataRow row = ds.Tables["tblDatXe"].NewRow();
 
-            DataRow row = ds.Tables["tblDatXe"].NewRow();
-            row["MaKH"] = txtMaKhachHang.Text.Trim();
-            row["TenKhach"] = txtTenKH.Text.Trim();
-            row["SDTKhach"] = txtSDTKH.Text.Trim();
-            row["DiemDon"] = txtDiemDon.Text.Trim();
-            row["DiemDen"] = txtDiemDen.Text.Trim();
-            row["MaXe"] = txtMaXe.Text.Trim();
-            row["TenTaiXe"] = txtTenTaiXe.Text.Trim();
-            row["SoCho"] = cboSoCho.SelectedValue;
+                // Gán giá trị cho các cột thực sự trong bảng datxe
+                row["MaKH"] = int.Parse(txtMaKhachHang.Text.Trim());
+                row["MaXe"] = int.Parse(txtMaXe.Text.Trim());
+                row["MaTaiXe"] = int.Parse(txtMaTaiXe.Text.Trim());
+                row["DiemDon"] = txtDiemDon.Text.Trim();
+                row["DiemDen"] = txtDiemDen.Text.Trim();
+                row["SoCho"] = int.Parse(cboSoCho.SelectedValue.ToString());
+                // LẤY GIÁ TRỊ NGÀY TỪ DATETIMEPICKER
+                row["NgayDat"] = dtpNgayDatXe.Value;
 
-            ds.Tables["tblDatXe"].Rows.Add(row);
-            dgvDatXe.Refresh();
-            MessageBox.Show("Thêm đặt xe mới thành công!", "Thông báo");
+                // Gán giá trị cho các cột hiển thị (cho DataGridView)
+                row["TenKhach"] = txtTenKH.Text.Trim();
+                row["SDTKhach"] = txtSDTKH.Text.Trim();
+                row["TenTaiXe"] = txtTenTaiXe.Text.Trim();
+
+                ds.Tables["tblDatXe"].Rows.Add(row);
+                dgvDatXe.Refresh();
+                MessageBox.Show("Thêm đặt xe mới thành công! Nhấn Lưu để cập nhật vào cơ sở dữ liệu.", "Thông báo");
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Mã Khách Hàng, Mã Xe, Mã Tài Xế, Số Chỗ phải là số nguyên!", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi thêm dữ liệu: " + ex.Message, "Lỗi",
+                   MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
+        // --- Sự kiện Sửa (CẬP NHẬT NGÀY ĐẶT) ---
         private void btnSua_Click(object sender, EventArgs e)
         {
             if (dgvDatXe.CurrentRow == null)
@@ -199,24 +372,55 @@ namespace quanlytaxi
                 return;
             }
 
-            DataRowView rowView = dgvDatXe.CurrentRow.DataBoundItem as DataRowView;
-            if (rowView == null) return;
+            // Kiểm tra thông tin bắt buộc
+            if (string.IsNullOrWhiteSpace(txtMaKhachHang.Text) ||
+                string.IsNullOrWhiteSpace(txtMaXe.Text) ||
+                string.IsNullOrWhiteSpace(txtMaTaiXe.Text) ||
+                string.IsNullOrWhiteSpace(txtDiemDon.Text) ||
+                string.IsNullOrWhiteSpace(txtDiemDen.Text))
+            {
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin đặt xe!", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-            DataRow row = rowView.Row;
+            try
+            {
+                DataRowView rowView = dgvDatXe.CurrentRow.DataBoundItem as DataRowView;
+                if (rowView == null) return;
 
-            row["MaKH"] = txtMaKhachHang.Text.Trim();
-            row["TenKhach"] = txtTenKH.Text.Trim();
-            row["SDTKhach"] = txtSDTKH.Text.Trim();
-            row["DiemDon"] = txtDiemDon.Text.Trim();
-            row["DiemDen"] = txtDiemDen.Text.Trim();
-            row["MaXe"] = txtMaXe.Text.Trim();
-            row["TenTaiXe"] = txtTenTaiXe.Text.Trim();
-            row["SoCho"] = cboSoCho.SelectedValue;
+                DataRow row = rowView.Row;
 
-            dgvDatXe.Refresh();
-            MessageBox.Show("Sửa đặt xe thành công! Nhấn Lưu để cập nhật vào cơ sở dữ liệu.", "Thông báo");
+                // Gán giá trị cho các cột thực sự trong bảng datxe
+                row["MaKH"] = int.Parse(txtMaKhachHang.Text.Trim());
+                row["MaXe"] = int.Parse(txtMaXe.Text.Trim());
+                row["MaTaiXe"] = int.Parse(txtMaTaiXe.Text.Trim());
+                row["DiemDon"] = txtDiemDon.Text.Trim();
+                row["DiemDen"] = txtDiemDen.Text.Trim();
+                row["SoCho"] = int.Parse(cboSoCho.SelectedValue.ToString());
+                // LẤY GIÁ TRỊ NGÀY TỪ DATETIMEPICKER
+                row["NgayDat"] = dtpNgayDatXe.Value;
+
+                // Cập nhật các cột hiển thị để lưới thấy thay đổi ngay
+                row["TenKhach"] = txtTenKH.Text.Trim();
+                row["SDTKhach"] = txtSDTKH.Text.Trim();
+                row["TenTaiXe"] = txtTenTaiXe.Text.Trim();
+
+                dgvDatXe.Refresh();
+                MessageBox.Show("Sửa đặt xe thành công! Nhấn Lưu để cập nhật vào cơ sở dữ liệu.", "Thông báo");
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Mã Khách Hàng, Mã Xe, Mã Tài Xế, Số Chỗ phải là số nguyên!", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi sửa dữ liệu: " + ex.Message, "Lỗi",
+                   MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
+        // --- Sự kiện Xóa (Giữ nguyên) ---
         private void btnXoa_Click(object sender, EventArgs e)
         {
             if (dgvDatXe.CurrentRow == null)
@@ -238,23 +442,45 @@ namespace quanlytaxi
             MessageBox.Show("Xóa đặt xe thành công! Nhấn Lưu để cập nhật vào database.", "Thông báo");
         }
 
+        // --- Sự kiện Lưu (Giữ nguyên) ---
         private void btnLuu_Click(object sender, EventArgs e)
         {
             try
             {
                 dgvDatXe.EndEdit();
+
+                // Ngăn chặn lỗi AutoIncrement
+                if (ds.Tables["tblDatXe"].Columns.Contains("MaDatXe"))
+                {
+                    ds.Tables["tblDatXe"].Columns["MaDatXe"].AutoIncrement = false;
+                }
+
                 daDatXe.Update(ds.Tables["tblDatXe"]);
                 MessageBox.Show("Đã lưu thay đổi vào MySQL thành công!", "Thông báo");
+
+                // Tải lại dữ liệu sau khi lưu để có MaDatXe mới (nếu có)
+                LoadDatXe();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi lưu dữ liệu: " + ex.Message, "Lỗi",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Xử lý lỗi ràng buộc khóa ngoại
+                if (ex.Message.Contains("FOREIGN KEY"))
+                {
+                    MessageBox.Show("Lỗi ràng buộc khóa ngoại: Mã Khách Hàng, Mã Xe, hoặc Mã Tài Xế không tồn tại trong hệ thống!", "Lỗi Lưu Dữ Liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi khi lưu dữ liệu: " + ex.Message, "Lỗi",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
+        // --- Sự kiện Hủy (Cập nhật NgayDat) ---
         private void btnHuy_Click(object sender, EventArgs e)
         {
+            isUpdatingText = true;
+
             txtMaKhachHang.Text = "";
             txtTenKH.Text = "";
             txtSDTKH.Text = "";
@@ -262,14 +488,17 @@ namespace quanlytaxi
             txtDiemDen.Text = "";
             txtMaXe.Text = "";
             txtTenTaiXe.Text = "";
+            txtMaTaiXe.Text = "";
+            // Đặt lại ngày về ngày hiện tại khi Hủy
+            dtpNgayDatXe.Value = DateTime.Now;
+
+            isUpdatingText = false;
+
             if (cboSoCho.Items.Count > 0) cboSoCho.SelectedIndex = 0;
+
+            // Hủy các thay đổi chưa lưu
+            ds.Tables["tblDatXe"].RejectChanges();
+            dgvDatXe.Refresh();
         }
-
-        private void btnThoat_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-
     }
 }

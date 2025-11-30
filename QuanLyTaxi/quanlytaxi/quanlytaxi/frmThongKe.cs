@@ -28,7 +28,7 @@ namespace quanlytaxi
             this.Dock = DockStyle.Fill;
 
             MySqlConnection conn = new MySqlConnection();
-            conn.ConnectionString = "server=localhost;user=root;password=cyclone221;database=qltaxi;";
+            conn.ConnectionString = "server=localhost;user=root;password=248569;database=qltaxi;";
 
             // ===== Load dữ liệu thống kê kèm tên tài xế =====
             string sQuery = @"

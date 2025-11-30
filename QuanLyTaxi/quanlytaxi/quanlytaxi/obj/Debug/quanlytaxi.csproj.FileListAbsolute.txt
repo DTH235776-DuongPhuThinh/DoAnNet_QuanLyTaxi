@@ -137,3 +137,6 @@ C:\Users\admin\source\repos\DTH235776-DuongPhuThinh\DoAnNet_QuanLyTaxi\QuanLyTax
 E:\project\DoAnNet_QuanLyTaxi\QuanLyTaxi\quanlytaxi\quanlytaxi\obj\Debug\quanlytaxi.frmDatXe.resources
 E:\project\DoAnNet_QuanLyTaxi\QuanLyTaxi\quanlytaxi\quanlytaxi\obj\Debug\quanlytaxi.frmKhachHang.resources
 E:\project\DoAnNet_QuanLyTaxi\QuanLyTaxi\quanlytaxi\quanlytaxi\obj\Debug\quanlytaxi.frmThongKe.resources
+D:\doanNET\QuanLyTaxi\quanlytaxi\quanlytaxi\obj\Debug\quanlytaxi.frmDatXe.resources
+D:\doanNET\QuanLyTaxi\quanlytaxi\quanlytaxi\obj\Debug\quanlytaxi.frmKhachHang.resources
+D:\doanNET\QuanLyTaxi\quanlytaxi\quanlytaxi\obj\Debug\quanlytaxi.frmThongKe.resources

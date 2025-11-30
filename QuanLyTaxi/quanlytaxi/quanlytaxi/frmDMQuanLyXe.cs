@@ -30,7 +30,7 @@ namespace quanlytaxi
             this.Dock = DockStyle.Fill;   // QUAN TRỌNG
 
             MySqlConnection conn = new MySqlConnection();
-            conn.ConnectionString = "server=localhost;user=root;password=cyclone221;database=qltaxi;";
+            conn.ConnectionString = "server=localhost;user=root;password=248569;database=qltaxi;";
 
             // ===== Load database loại xe =====
             string sQueryXe = @"SELECT * FROM loaixe";
