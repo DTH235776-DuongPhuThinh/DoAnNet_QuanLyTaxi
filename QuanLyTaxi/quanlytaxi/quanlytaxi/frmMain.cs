@@ -37,6 +37,7 @@ namespace quanlytaxi
             frmXe.Dock = DockStyle.Fill;
             tabQuanLyXe.Controls.Add(frmXe);
             frmXe.Show();
+
             // Mở frmDatXe
             frmDatXe frmDat = new frmDatXe();
             frmDat.TopLevel = false;
@@ -53,13 +54,19 @@ namespace quanlytaxi
             tabKH.Controls.Add(frmKH); // tabKhachHang là TabPage cho Khách hàng
             frmKH.Show();
 
-            frmThongKe frmTK = new frmThongKe();
-            frmTK.TopLevel = false;
-            frmTK.FormBorderStyle = FormBorderStyle.None;
-            frmTK.Dock = DockStyle.Fill;
-            tabThongKe.Controls.Add(frmTK);
-            frmTK.Show();
+            frmBCThongKe frmBCTK = new frmBCThongKe();
+            frmBCTK.TopLevel = false;
+            frmBCTK .FormBorderStyle = FormBorderStyle.None;
+            frmBCTK.Dock = DockStyle.Fill;
+            tabBCThongKe.Controls.Add(frmBCTK);
+            frmBCTK.Show();
 
+            frmHoaDon frmHD = new frmHoaDon();
+            frmHD.TopLevel = false;
+            frmHD.FormBorderStyle = FormBorderStyle.None;
+            frmHD.Dock = DockStyle.Fill;
+            tabHoaDon.Controls.Add(frmHD);
+            frmHD.Show();
         }
 
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)

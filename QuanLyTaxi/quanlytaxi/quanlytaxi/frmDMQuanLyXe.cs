@@ -30,7 +30,7 @@ namespace quanlytaxi
             this.Dock = DockStyle.Fill;   // QUAN TRỌNG
 
             MySqlConnection conn = new MySqlConnection();
-            conn.ConnectionString = "server=localhost;user=root;password=248569;database=qltaxi;";
+            conn.ConnectionString = "server=localhost;user=root;password=A12345671a;database=qltaxi;";
 
             // ===== Load database loại xe =====
             string sQueryXe = @"SELECT * FROM loaixe";
@@ -253,13 +253,5 @@ namespace quanlytaxi
             if (cboSoCho.Items.Count > 0) cboSoCho.SelectedIndex = 0;
             if (cboTrangThai.Items.Count > 0) cboTrangThai.SelectedIndex = 0;
         }
-
-
-        private void btnThoat_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-
     }
 }

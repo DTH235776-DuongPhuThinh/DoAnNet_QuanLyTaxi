@@ -101,6 +101,12 @@
     <Compile Include="DangNhap.Designer.cs">
       <DependentUpon>DangNhap.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmBCThongKe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBCThongKe.Designer.cs">
+      <DependentUpon>frmBCThongKe.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDatXe.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +125,12 @@
     <Compile Include="frmDMQuanLyXe.Designer.cs">
       <DependentUpon>frmDMQuanLyXe.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmHoaDon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHoaDon.Designer.cs">
+      <DependentUpon>frmHoaDon.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmKhachHang.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,16 +143,13 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmThongKe.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmThongKe.Designer.cs">
-      <DependentUpon>frmThongKe.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="DangNhap.resx">
       <DependentUpon>DangNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBCThongKe.resx">
+      <DependentUpon>frmBCThongKe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDatXe.resx">
       <DependentUpon>frmDatXe.cs</DependentUpon>
@@ -151,14 +160,14 @@
     <EmbeddedResource Include="frmDMQuanLyXe.resx">
       <DependentUpon>frmDMQuanLyXe.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmHoaDon.resx">
+      <DependentUpon>frmHoaDon.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmKhachHang.resx">
       <DependentUpon>frmKhachHang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmThongKe.resx">
-      <DependentUpon>frmThongKe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

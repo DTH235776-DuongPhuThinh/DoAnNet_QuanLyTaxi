@@ -111,3 +111,30 @@ INSERT INTO thongke (MaTaiXe, SoChuyen, DoanhThu) VALUES
 (4, 1, 480000),   
 (5, 1, 120000);   
 
+-- 1. Thêm cột Thành Tiền vào bảng đặt xe
+ALTER TABLE datxe ADD COLUMN ThanhTien DECIMAL(18,2) DEFAULT 0;
+
+-- 2. Cập nhật dữ liệu mẫu (Giả lập tiền cước cho các chuyến đã đi)
+UPDATE datxe SET ThanhTien = 150000 WHERE MaDatXe = 1;
+UPDATE datxe SET ThanhTien = 200000 WHERE MaDatXe = 2;
+UPDATE datxe SET ThanhTien = 50000 WHERE MaDatXe = 3;
+UPDATE datxe SET ThanhTien = 500000 WHERE MaDatXe = 4;
+UPDATE datxe SET ThanhTien = 120000 WHERE MaDatXe = 5;
+
+-- Thêm vài dòng dữ liệu tháng khác để test báo cáo
+INSERT INTO datxe (MaKH, MaXe, MaTaiXe, DiemDon, DiemDen, SoCho, NgayDat, ThanhTien) VALUES
+(1, 1, 1, 'Quan 1', 'Quan 3', 4, '2023-10-15 10:00:00', 80000),
+(2, 2, 2, 'Quan 5', 'Quan 10', 7, '2023-10-20 14:00:00', 100000);
+
+CREATE TABLE hoadon (
+    MaHoaDon INT AUTO_INCREMENT PRIMARY KEY,
+    MaDatXe INT NOT NULL, -- Liên kết với bảng đặt xe
+    NgayLap DATETIME DEFAULT NOW(),
+    TongTien DECIMAL(18, 2), -- Số tiền thực thu (có thể khác tiền dự kiến)
+    GhiChu TEXT,
+    FOREIGN KEY (MaDatXe) REFERENCES datxe(MaDatXe)
+);
+
+-- Thêm dữ liệu mẫu (nếu cần test ngay)
+INSERT INTO hoadon (MaDatXe, TongTien, GhiChu) VALUES 
+(1, 150000, 'Khách trả tiền mặt');
