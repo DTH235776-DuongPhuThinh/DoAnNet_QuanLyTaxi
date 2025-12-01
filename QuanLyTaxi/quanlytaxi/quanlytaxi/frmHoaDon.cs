@@ -15,7 +15,7 @@ namespace quanlytaxi
 {
     public partial class frmHoaDon : Form
     {
-        string connString = "server=localhost;user=root;password=248569;database=qltaxi;";
+        string connString = "server=localhost;user=root;password=A12345671a;database=qltaxi;";
         public frmHoaDon()
         {
             InitializeComponent();
@@ -193,12 +193,57 @@ namespace quanlytaxi
             LoadChuyenXeChuaThanhToan(); // Gọi lại hàm tải dữ liệu
 
             // Xóa trắng các ô nhập liệu cũ
+            txtTimKiemHoaDon.Text = "";
+            txtMaHoaDon.Text = "";
             txtMaDatXe.Text = "";
             txtTenKhach.Text = "";
+            txtNgayDat.Text = "";
             txtDiemDi.Text = "";
             txtDiemDen.Text = "";
             txtThanhTien.Text = "";
             txtGhiChu.Text = "";
+        }
+
+        private void btnTimHoaDon_Click(object sender, EventArgs e)
+        {
+            string tuKhoa = txtTimKiemHoaDon.Text.Trim();
+
+            using (MySqlConnection conn = new MySqlConnection(connString))
+            {
+                try
+                {
+                    conn.Open();
+                    // Câu lệnh SQL lọc theo Tên Khách hoặc Mã Đặt Xe
+                    string sql = @"
+                SELECT 
+                    d.MaDatXe, d.NgayDat, k.HoTen AS TenKhach, 
+                    d.DiemDon, d.DiemDen, d.ThanhTien, d.GhiChu
+                FROM datxe d
+                JOIN khachhang k ON d.MaKH = k.MaKH
+                WHERE d.MaDatXe NOT IN (SELECT MaDatXe FROM hoadon) -- Vẫn phải giữ điều kiện chưa thanh toán
+                AND (k.HoTen LIKE @TuKhoa OR d.MaDatXe LIKE @TuKhoa)"; // <--- Thêm dòng tìm kiếm này
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+                    // Dấu % để tìm kiếm gần đúng (chứa từ khóa)
+                    cmd.Parameters.AddWithValue("@TuKhoa", "%" + tuKhoa + "%");
+
+                    MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    // Đổ dữ liệu vào lưới
+                    dgvChoThanhToan.DataSource = dt;
+
+                    if (dt.Rows.Count == 0)
+                    {
+                        MessageBox.Show("Không tìm thấy chuyến xe nào!");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi tìm kiếm: " + ex.Message);
+                }
+            }
         }
     }
 }

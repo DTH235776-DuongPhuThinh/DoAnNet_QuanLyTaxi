@@ -13,12 +13,16 @@ namespace quanlytaxi
 {
     public partial class frmBCThongKe : Form
     {
-        // Chuỗi kết nối dùng chung
-        string connString = "server=localhost;user=root;password=248569;database=qltaxi;";
+        
+        string connString = "server=localhost;user=root;password=A12345671a;database=qltaxi;";
 
         // Các biến cho Tab 1 (Quản lý tài xế)
         DataSet ds = new DataSet("dsQLTaxi");
         MySqlDataAdapter daThongKe;
+        MySqlConnection conn = new MySqlConnection();
+
+        // Biến cờ để tránh vòng lặp vô hạn khi gán text tự động (quan trọng cho Lookup)
+        private bool isUpdatingText = false;
 
         public frmBCThongKe()
         {
@@ -30,6 +34,7 @@ namespace quanlytaxi
             // Cấu hình Form
             this.AutoSize = false;
             this.Dock = DockStyle.Fill;
+
 
             // 1. TẢI DỮ LIỆU CHO TAB 1 (Logic cũ của bạn)
             LoadDuLieuTaiXe();
@@ -73,6 +78,8 @@ namespace quanlytaxi
                 dgvThongKe.Columns["DoanhThu"].Width = 130;
                 dgvThongKe.Columns["DoanhThu"].DefaultCellStyle.Format = "#,###";
 
+                
+
                 dgvThongKe.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
                 FormatLuoiTaiXe();
@@ -114,6 +121,45 @@ namespace quanlytaxi
                 dgvThongKe.Columns["DoanhThu"].DefaultCellStyle.Format = "#,###";
             dgvThongKe.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
+
+        // --- Hàm Lookup Tài Xế (Tự động điền) ---
+        private void LookupTaiXe(int maTaiXe)
+        {
+            isUpdatingText = true;
+            txtTenTaiXe.Text = "";
+            if (maTaiXe <= 0)
+            {
+                isUpdatingText = false;
+                return;
+            }
+
+            string query = "SELECT HoTen FROM taixe WHERE MaTaiXe = @MaTaiXe";
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@MaTaiXe", maTaiXe);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        txtTenTaiXe.Text = reader["HoTen"].ToString();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                // Bỏ qua lỗi kết nối
+            }
+            finally
+            {
+                if (conn.State == ConnectionState.Open) conn.Close();
+                isUpdatingText = false;
+            }
+        }
+
+
 
         private void dgvThongKe_Click(object sender, EventArgs e)
         {
@@ -168,17 +214,6 @@ namespace quanlytaxi
             ds.Tables["tblThongKe"].Rows.Add(row);
             dgvThongKe.Refresh();
             MessageBox.Show("Thêm dữ liệu thành công!", "Thông báo");
-
-            /*try
-            {
-                DataRow row = ds.Tables["tblThongKe"].NewRow();
-                row["MaTaiXe"] = txtMaTaiXe.Text.Trim();
-                row["TenTaiXe"] = txtTenTaiXe.Text.Trim();
-                row["SoChuyen"] = int.Parse(txtSoChuyen.Text);
-                row["DoanhThu"] = decimal.Parse(txtDoanhThu.Text);
-                ds.Tables["tblThongKe"].Rows.Add(row);
-            }
-            catch (Exception ex) { MessageBox.Show("Lỗi thêm: " + ex.Message); }*/
         }
 
         private void btnSua_Click(object sender, EventArgs e)
@@ -213,15 +248,20 @@ namespace quanlytaxi
             try
             {
                 dgvThongKe.EndEdit();
-                daThongKe.Update(ds.Tables["tblThongKe"]);
-                MessageBox.Show("Đã lưu thành công!");
+                daThongKe.Update(ds.Tables["tblTaiXe"]);
+                MessageBox.Show("Đã lưu tất cả thay đổi vào MySQL!");
             }
-            catch (Exception ex) { MessageBox.Show("Lỗi lưu: " + ex.Message); }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi lưu dữ liệu: " + ex.Message);
+            }
         }
-
         // ===== NÚT HỦY =====
         private void btnHuy_Click(object sender, EventArgs e)
         {
+            LoadDuLieuTaiXe();
+
+            txtTimKiemTaiXe.Text = "";
             txtMaTaiXe.Text = "";
             txtTenTaiXe.Text = "";
             txtSoChuyen.Text = "";
@@ -295,6 +335,56 @@ namespace quanlytaxi
             }
 
             dgvBaoCaoThang.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
+
+        private void btnTimTaiXe_Click(object sender, EventArgs e)
+        {
+            string tuKhoa = txtTimKiemTaiXe.Text.Trim();
+
+            using (MySqlConnection conn = new MySqlConnection(connString))
+            {
+                try
+                {
+                    conn.Open();
+                    // Câu lệnh SQL tìm trong bảng Thống kê + Tài xế
+                    string sql = @"
+                SELECT tk.MaTaiXe, tx.HoTen AS TenTaiXe, tk.SoChuyen, tk.DoanhThu 
+                FROM thongke tk 
+                LEFT JOIN taixe tx ON tk.MaTaiXe = tx.MaTaiXe
+                WHERE tx.HoTen LIKE @TuKhoa OR tk.MaTaiXe LIKE @TuKhoa";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@TuKhoa", "%" + tuKhoa + "%");
+
+                    MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    dgvThongKe.DataSource = dt;
+
+                    if (dt.Rows.Count == 0)
+                    {
+                        MessageBox.Show("Không tìm thấy tài xế nào!");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi tìm kiếm: " + ex.Message);
+                }
+            }
+        }
+
+        private void txtMaTaiXe_TextChanged(object sender, EventArgs e)
+        {
+            if (isUpdatingText) return;
+            if (int.TryParse(txtMaTaiXe.Text, out int maTaiXe))
+            {
+                LookupTaiXe(maTaiXe);
+            }
+            else
+            {
+                txtTenTaiXe.Text = "";
+            }
         }
     }
 }
