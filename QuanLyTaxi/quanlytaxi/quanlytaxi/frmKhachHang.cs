@@ -26,7 +26,7 @@ namespace quanlytaxi
             this.Dock = DockStyle.Fill;
 
             MySqlConnection conn = new MySqlConnection();
-            conn.ConnectionString = "server=localhost;user=root;password=cyclone221;database=qltaxi;";
+            conn.ConnectionString = "server=localhost;user=root;password=248569;database=qltaxi;";
 
             // ===== Load dữ liệu Khách hàng =====
             string sQuery = @"SELECT * FROM khachhang";
@@ -207,6 +207,52 @@ namespace quanlytaxi
             txtEmail.Text = "";
             txtCMND.Text = "";
             radNam.Checked = true;
+
+            if (dgvKhachHang.DataSource is DataTable dt)
+            {
+                dt.DefaultView.RowFilter = string.Empty;
+                txtTimKiem.Text = ""; // Xóa nội dung ô tìm kiếm
+            }
+
+        }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            string searchValue = txtTimKiem.Text.Trim();
+            DataTable dtKhachHang = ds.Tables["tblKhachHang"];
+            DataView dv = dtKhachHang.DefaultView; // Lấy DataView hiện tại
+
+            // 1. Kiểm tra nếu ô tìm kiếm rỗng
+            if (string.IsNullOrWhiteSpace(searchValue))
+            {
+                dv.RowFilter = string.Empty;
+                return;
+            }
+
+            try
+            {
+                // 2. Tạo biểu thức lọc
+                string filterExpression = string.Format(
+                    "HoTen LIKE '%{0}%' OR SDT LIKE '%{0}%' OR Email LIKE '%{0}%' OR CCCD LIKE '%{0}%' OR Convert(MaKH, 'System.String') LIKE '%{0}%'",
+                    searchValue
+                );
+
+                // 3. Áp dụng bộ lọc
+                dv.RowFilter = filterExpression;
+
+                // 4. KIỂM TRA SỐ LƯỢNG HÀNG TRONG DATA VIEW (Đã lọc)
+                if (dv.Count == 0)
+                {
+                    MessageBox.Show("Không tìm thấy khách hàng nào khớp với từ khóa.", "Thông báo",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tìm kiếm: " + ex.Message, "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
     }
 }

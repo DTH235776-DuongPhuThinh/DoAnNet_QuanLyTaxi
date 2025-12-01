@@ -138,7 +138,6 @@ E:\project\DoAnNet_QuanLyTaxi\QuanLyTaxi\quanlytaxi\quanlytaxi\obj\Debug\quanlyt
 E:\project\DoAnNet_QuanLyTaxi\QuanLyTaxi\quanlytaxi\quanlytaxi\obj\Debug\quanlytaxi.frmKhachHang.resources
 D:\doanNET\QuanLyTaxi\quanlytaxi\quanlytaxi\obj\Debug\quanlytaxi.frmDatXe.resources
 D:\doanNET\QuanLyTaxi\quanlytaxi\quanlytaxi\obj\Debug\quanlytaxi.frmKhachHang.resources
-D:\doanNET\QuanLyTaxi\quanlytaxi\quanlytaxi\obj\Debug\quanlytaxi.frmThongKe.resources
 C:\Users\admin\Source\Repos\DoAnNet_QuanLyTaxi\QuanLyTaxi\quanlytaxi\quanlytaxi\bin\Debug\quanlytaxi.exe.config
 C:\Users\admin\Source\Repos\DoAnNet_QuanLyTaxi\QuanLyTaxi\quanlytaxi\quanlytaxi\bin\Debug\quanlytaxi.exe
 C:\Users\admin\Source\Repos\DoAnNet_QuanLyTaxi\QuanLyTaxi\quanlytaxi\quanlytaxi\bin\Debug\quanlytaxi.pdb
@@ -190,3 +189,5 @@ C:\Users\admin\Source\Repos\DoAnNet_QuanLyTaxi\QuanLyTaxi\quanlytaxi\quanlytaxi\
 C:\Users\admin\Source\Repos\DoAnNet_QuanLyTaxi\QuanLyTaxi\quanlytaxi\quanlytaxi\obj\Debug\quanlytaxi.frmHoaDon.resources
 E:\project\DoAnNet_QuanLyTaxi\QuanLyTaxi\quanlytaxi\quanlytaxi\obj\Debug\quanlytaxi.frmBCThongKe.resources
 E:\project\DoAnNet_QuanLyTaxi\QuanLyTaxi\quanlytaxi\quanlytaxi\obj\Debug\quanlytaxi.frmHoaDon.resources
+D:\DOANNET\QuanLyTaxi\quanlytaxi\quanlytaxi\obj\Debug\quanlytaxi.frmBCThongKe.resources
+D:\DOANNET\QuanLyTaxi\quanlytaxi\quanlytaxi\obj\Debug\quanlytaxi.frmHoaDon.resources

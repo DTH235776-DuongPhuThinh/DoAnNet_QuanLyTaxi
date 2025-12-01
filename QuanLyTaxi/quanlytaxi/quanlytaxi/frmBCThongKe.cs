@@ -14,7 +14,7 @@ namespace quanlytaxi
     public partial class frmBCThongKe : Form
     {
         // Chuỗi kết nối dùng chung
-        string connString = "server=localhost;user=root;password=cyclone221;database=qltaxi;";
+        string connString = "server=localhost;user=root;password=248569;database=qltaxi;";
 
         // Các biến cho Tab 1 (Quản lý tài xế)
         DataSet ds = new DataSet("dsQLTaxi");

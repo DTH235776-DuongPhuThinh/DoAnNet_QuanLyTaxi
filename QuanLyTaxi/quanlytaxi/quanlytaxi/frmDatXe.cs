@@ -28,7 +28,7 @@ namespace quanlytaxi
             this.FormBorderStyle = FormBorderStyle.None;
             this.Dock = DockStyle.Fill;
 
-            conn.ConnectionString = "server=localhost;user=root;password=cyclone221;database=qltaxi;";
+            conn.ConnectionString = "server=localhost;user=root;password=248569;database=qltaxi;";
 
             LoadDatXe();
 
@@ -499,6 +499,67 @@ namespace quanlytaxi
             // Hủy các thay đổi chưa lưu
             ds.Tables["tblDatXe"].RejectChanges();
             dgvDatXe.Refresh();
+
+            // Hủy bộ lọc để hiện lại toàn bộ dữ liệu gốc
+            ApplyFilter("");
+        }
+
+        private void btntimKiem_Click(object sender, EventArgs e)
+        {
+             string searchValue = txttimKiem.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(searchValue))
+            {
+                // Nếu ô tìm kiếm trống, hiển thị lại toàn bộ dữ liệu
+                ApplyFilter("");
+                return;
+            }
+
+            // Xây dựng chuỗi lọc (Filter Expression) để tìm kiếm trên nhiều cột
+            // Sử dụng 'LIKE' và '%{value}%' để tìm kiếm chuỗi con không phân biệt chữ hoa/thường
+            // Các cột tìm kiếm: MaDatXe, TenKhach, SDTKhach, DiemDon, DiemDen, TenTaiXe
+            string filterExpression = string.Format(
+                "Convert(MaDatXe, 'System.String') LIKE '%{0}%' OR " +
+                "TenKhach LIKE '%{0}%' OR " +
+                "SDTKhach LIKE '%{0}%' OR " +
+                "DiemDon LIKE '%{0}%' OR " +
+                "DiemDen LIKE '%{0}%' OR " +
+                "TenTaiXe LIKE '%{0}%'",
+                searchValue.Replace("'", "''") // Tránh lỗi SQL Injection cho RowFilter
+            );
+
+            ApplyFilter(filterExpression);
+
+        }
+
+        private void ApplyFilter(string filter)
+        {
+            try
+            {
+                DataTable dt = ds.Tables["tblDatXe"];
+
+                // Lấy DataView từ DataTable
+                DataView dv = dt.DefaultView;
+
+                // Áp dụng bộ lọc
+                dv.RowFilter = filter;
+
+                // Gắn DataView đã lọc lại vào DataGridView
+                dgvDatXe.DataSource = dv;
+
+                if (string.IsNullOrEmpty(filter))
+                {
+                    MessageBox.Show("Đã hủy bỏ tìm kiếm. Hiển thị toàn bộ dữ liệu.", "Thông báo");
+                }
+                else if (dv.Count == 0)
+                {
+                    MessageBox.Show("Không tìm thấy kết quả nào trùng khớp.", "Thông báo");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi áp dụng bộ lọc: " + ex.Message, "Lỗi Tìm Kiếm", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

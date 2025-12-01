@@ -48,6 +48,9 @@
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dgvKhachHang = new System.Windows.Forms.DataGridView();
+            this.btnTimKiem = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtTimKiem = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKhachHang)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,7 +69,7 @@
             // btnHuy
             // 
             this.btnHuy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.btnHuy.Location = new System.Drawing.Point(1016, 232);
+            this.btnHuy.Location = new System.Drawing.Point(959, 229);
             this.btnHuy.Margin = new System.Windows.Forms.Padding(5);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(125, 48);
@@ -260,12 +263,42 @@
             this.dgvKhachHang.TabIndex = 59;
             this.dgvKhachHang.Click += new System.EventHandler(this.dgvKhachHang_Click);
             // 
+            // btnTimKiem
+            // 
+            this.btnTimKiem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnTimKiem.Location = new System.Drawing.Point(1093, 232);
+            this.btnTimKiem.Name = "btnTimKiem";
+            this.btnTimKiem.Size = new System.Drawing.Size(124, 45);
+            this.btnTimKiem.TabIndex = 60;
+            this.btnTimKiem.Text = "Tìm kiếm";
+            this.btnTimKiem.UseVisualStyleBackColor = false;
+            this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(959, 83);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(103, 27);
+            this.label8.TabIndex = 61;
+            this.label8.Text = "Tìm kiếm";
+            // 
+            // txtTimKiem
+            // 
+            this.txtTimKiem.Location = new System.Drawing.Point(1068, 80);
+            this.txtTimKiem.Name = "txtTimKiem";
+            this.txtTimKiem.Size = new System.Drawing.Size(149, 35);
+            this.txtTimKiem.TabIndex = 62;
+            // 
             // frmKhachHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1265, 678);
+            this.Controls.Add(this.txtTimKiem);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.btnTimKiem);
             this.Controls.Add(this.dgvKhachHang);
             this.Controls.Add(this.btnSua);
             this.Controls.Add(this.btnHuy);
@@ -318,5 +351,8 @@
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView dgvKhachHang;
+        private System.Windows.Forms.Button btnTimKiem;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtTimKiem;
     }
 }
