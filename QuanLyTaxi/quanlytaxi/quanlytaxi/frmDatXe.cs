@@ -28,7 +28,7 @@ namespace quanlytaxi
             this.FormBorderStyle = FormBorderStyle.None;
             this.Dock = DockStyle.Fill;
 
-            conn.ConnectionString = "server=localhost;user=root;password=A12345671a;database=qltaxi;";
+            conn.ConnectionString = "server=localhost;user=root;password=cyclone221;database=qltaxi;";
 
             LoadDatXe();
 

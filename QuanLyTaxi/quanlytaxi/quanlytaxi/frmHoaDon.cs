@@ -15,7 +15,7 @@ namespace quanlytaxi
 {
     public partial class frmHoaDon : Form
     {
-        string connString = "server=localhost;user=root;password=A12345671a;database=qltaxi;";
+        string connString = "server=localhost;user=root;password=cyclone221;database=qltaxi;";
         public frmHoaDon()
         {
             InitializeComponent();

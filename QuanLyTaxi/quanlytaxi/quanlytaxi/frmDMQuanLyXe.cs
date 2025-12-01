@@ -15,7 +15,7 @@ namespace quanlytaxi
     {
         DataSet ds = new DataSet("dsQLTaxi");
         MySqlDataAdapter daXe;
-
+        DataView dvXe;
         public frmDMQuanLyXe()
         {
             InitializeComponent();
@@ -30,7 +30,7 @@ namespace quanlytaxi
             this.Dock = DockStyle.Fill;   // QUAN TRỌNG
 
             MySqlConnection conn = new MySqlConnection();
-            conn.ConnectionString = "server=localhost;user=root;password=A12345671a;database=qltaxi;";
+            conn.ConnectionString = "server=localhost;user=root;password=cyclone221;database=qltaxi;";
 
             // ===== Load database loại xe =====
             string sQueryXe = @"SELECT * FROM loaixe";
@@ -85,6 +85,9 @@ namespace quanlytaxi
             dgvLoaiXe.Columns["MoTa"].Width = 300;
 
             dgvLoaiXe.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            dvXe = new DataView(ds.Tables["tblLoaiXe"]);
+            dgvLoaiXe.DataSource = dvXe;    
 
             // ===== Thiết lập command Insert =====
             string sInsert = @"INSERT INTO loaixe(SoXe, SoCho, GiaTrenKM, TrangThai, MoTa) 
@@ -252,6 +255,27 @@ namespace quanlytaxi
             txtGiaKM.Text = "";
             if (cboSoCho.Items.Count > 0) cboSoCho.SelectedIndex = 0;
             if (cboTrangThai.Items.Count > 0) cboTrangThai.SelectedIndex = 0;
+
+            txtTim.Text = "";
+            dvXe.RowFilter = "";
+            dgvLoaiXe.Refresh();
         }
+
+        private void btnTim_Click(object sender, EventArgs e)
+        {
+            string keyword = txtTim.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(keyword))
+            {
+                dvXe.RowFilter = "";
+            }
+            else
+            {
+                dvXe.RowFilter =
+                    $"SoXe LIKE '%{keyword}%' " +
+                    $"OR CONVERT(MaXe, 'System.String') LIKE '%{keyword}%'";
+            }
+        }
+
     }
 }
