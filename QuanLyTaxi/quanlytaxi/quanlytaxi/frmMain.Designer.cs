@@ -42,7 +42,7 @@
             this.labelHeader.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelHeader.AutoSize = true;
             this.labelHeader.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.labelHeader.Location = new System.Drawing.Point(516, 38);
+            this.labelHeader.Location = new System.Drawing.Point(502, 0);
             this.labelHeader.Name = "labelHeader";
             this.labelHeader.Size = new System.Drawing.Size(252, 36);
             this.labelHeader.TabIndex = 0;
@@ -57,7 +57,7 @@
             this.menuDanhMuc});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1308, 36);
+            this.menuStrip1.Size = new System.Drawing.Size(1308, 33);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -71,7 +71,7 @@
             this.hóaĐơnToolStripMenuItem,
             this.báoCáoThốngKêToolStripMenuItem});
             this.menuDanhMuc.Name = "menuDanhMuc";
-            this.menuDanhMuc.Size = new System.Drawing.Size(109, 32);
+            this.menuDanhMuc.Size = new System.Drawing.Size(109, 29);
             this.menuDanhMuc.Text = "Danh mục";
             // 
             // toolDMQuanLyTaiXe

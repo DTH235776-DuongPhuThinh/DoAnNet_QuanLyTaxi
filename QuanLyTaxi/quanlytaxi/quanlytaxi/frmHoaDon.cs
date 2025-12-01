@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using Mysqlx.Crud;
+using Org.BouncyCastle.Asn1.X509;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,6 +29,7 @@ namespace quanlytaxi
             LoadChuyenXeChuaThanhToan();
         }
 
+        
         // 1. TẢI DANH SÁCH CHUYẾN XE CHƯA THANH TOÁN
         // Logic: Lấy các chuyến trong bảng datxe MÀ CHƯA CÓ mặt trong bảng hoadon
         private void LoadChuyenXeChuaThanhToan()
@@ -217,12 +219,12 @@ namespace quanlytaxi
                     string sql = @"
                 SELECT 
                     d.MaDatXe, d.NgayDat, k.HoTen AS TenKhach, 
-                    d.DiemDon, d.DiemDen, d.ThanhTien, d.GhiChu
+                    d.DiemDon, d.DiemDen, d.ThanhTien
                 FROM datxe d
                 JOIN khachhang k ON d.MaKH = k.MaKH
                 WHERE d.MaDatXe NOT IN (SELECT MaDatXe FROM hoadon) -- Vẫn phải giữ điều kiện chưa thanh toán
-                AND (k.HoTen LIKE @TuKhoa OR d.MaDatXe LIKE @TuKhoa)"; // <--- Thêm dòng tìm kiếm này
-
+                AND (k.HoTen LIKE @TuKhoa OR d.MaDatXe LIKE @TuKhoa) // <--- Thêm dòng tìm kiếm này
+                ORDER BY d.MaDatXe ASC";
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
                     // Dấu % để tìm kiếm gần đúng (chứa từ khóa)
                     cmd.Parameters.AddWithValue("@TuKhoa", "%" + tuKhoa + "%");

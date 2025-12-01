@@ -78,8 +78,6 @@ namespace quanlytaxi
                 dgvThongKe.Columns["DoanhThu"].Width = 130;
                 dgvThongKe.Columns["DoanhThu"].DefaultCellStyle.Format = "#,###";
 
-                
-
                 dgvThongKe.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
                 FormatLuoiTaiXe();
@@ -125,41 +123,56 @@ namespace quanlytaxi
         // --- Hàm Lookup Tài Xế (Tự động điền) ---
         private void LookupTaiXe(int maTaiXe)
         {
+            // 1. Bật cờ để chặn sự kiện TextChanged chạy lặp lại
             isUpdatingText = true;
+
+            // Xóa tên cũ trước khi tìm
             txtTenTaiXe.Text = "";
+
+            // Nếu mã <= 0 thì không tìm làm gì cả
             if (maTaiXe <= 0)
             {
                 isUpdatingText = false;
                 return;
             }
 
-            string query = "SELECT HoTen FROM taixe WHERE MaTaiXe = @MaTaiXe";
-            try
+            // 2. Sử dụng "using" để tạo kết nối cục bộ. 
+            // Khi chạy xong khối ngoặc {}, kết nối tự động đóng và giải phóng RAM.
+            using (MySqlConnection localConn = new MySqlConnection(connString))
             {
-                conn.Open();
-                MySqlCommand cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@MaTaiXe", maTaiXe);
-
-                using (MySqlDataReader reader = cmd.ExecuteReader())
+                try
                 {
-                    if (reader.Read())
+                    localConn.Open();
+                    string query = "SELECT HoTen FROM taixe WHERE MaTaiXe = @MaTaiXe";
+
+                    MySqlCommand cmd = new MySqlCommand(query, localConn);
+                    cmd.Parameters.AddWithValue("@MaTaiXe", maTaiXe);
+
+                    // Dùng ExecuteScalar cho nhanh vì chỉ lấy 1 giá trị (Tên)
+                    object result = cmd.ExecuteScalar();
+
+                    if (result != null)
                     {
-                        txtTenTaiXe.Text = reader["HoTen"].ToString();
+                        txtTenTaiXe.Text = result.ToString();
+                    }
+                    else
+                    {
+                        // Nếu không tìm thấy thì báo
+                        txtTenTaiXe.Text = "Không tìm thấy";
                     }
                 }
-            }
-            catch (Exception)
-            {
-                // Bỏ qua lỗi kết nối
-            }
-            finally
-            {
-                if (conn.State == ConnectionState.Open) conn.Close();
-                isUpdatingText = false;
+                catch (Exception ex)
+                {
+                    // Có thể log lỗi ra Console nếu cần debug
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    // 3. Quan trọng: Luôn tắt cờ dù có lỗi hay không
+                    isUpdatingText = false;
+                }
             }
         }
-
-
 
         private void dgvThongKe_Click(object sender, EventArgs e)
         {
@@ -248,7 +261,7 @@ namespace quanlytaxi
             try
             {
                 dgvThongKe.EndEdit();
-                daThongKe.Update(ds.Tables["tblTaiXe"]);
+                daThongKe.Update(ds.Tables["tblThongKe"]);
                 MessageBox.Show("Đã lưu tất cả thay đổi vào MySQL!");
             }
             catch (Exception ex)
@@ -376,14 +389,20 @@ namespace quanlytaxi
 
         private void txtMaTaiXe_TextChanged(object sender, EventArgs e)
         {
+            // Nếu code đang tự động điền thì không chạy sự kiện này
             if (isUpdatingText) return;
-            if (int.TryParse(txtMaTaiXe.Text, out int maTaiXe))
+
+            // Chỉ tìm khi người dùng gõ số hợp lệ
+            if (int.TryParse(txtMaTaiXe.Text.Trim(), out int maTaiXe))
             {
                 LookupTaiXe(maTaiXe);
             }
             else
             {
+                // Nếu gõ chữ hoặc để trống thì xóa tên tài xế đi
+                isUpdatingText = true;
                 txtTenTaiXe.Text = "";
+                isUpdatingText = false;
             }
         }
     }
